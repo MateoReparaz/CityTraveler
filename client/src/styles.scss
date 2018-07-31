@@ -1,0 +1,372 @@
+/* You can add global styles to this file, and also import other style files */
+@import "_variables.scss";
+
+body {
+    margin: 0;
+    padding-top: 50px;
+    font-family: $sans-font;
+    * {
+      margin: 0;
+    }
+    a:hover,
+    btn:hover {
+      cursor: pointer;
+    }
+  }
+  
+  input,select{
+    box-sizing: border-box;
+    float: left;
+    height: 40px;
+    width: calc(100% - 40px);
+    margin-bottom: 20px;
+    border: 2px solid rgba(54, 130, 138, 0.2);
+    border-radius: 0;
+    font-size: 14px;
+    padding: 0 5px;
+  }
+  input:focus, select:focus{
+    border-color: $primary;
+    outline: none;
+  }
+  select {
+    -webkit-appearance: none; 
+    appearance: none;
+    background-color: $white;
+    text-indent: 0.01px;
+    text-overflow: '';
+    padding: 0 10px;
+    /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding.
+    via: https://cssdeck.com/labs/styling-select-box-with-css3 */
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+      padding-right:1em;
+    }
+    border-radius: 0;
+    position: relative;
+  }
+  .select{
+    label {
+      position: relative;
+      display: inline-block;
+      &:after {
+        display: block;
+        content: "▾";
+        font-size: 24px;
+        width: 20px;
+        position: absolute;
+        height: 20px;
+        margin-top: 16px;
+        margin-right: 10px;
+        right: 0;
+        color: $primary;
+        pointer-events: none;
+        z-index: 99999;
+      }
+    }  
+  }
+  button,
+  a.btn{
+    margin-top: 30px;
+    box-sizing: border-box;
+    width: 40px;
+    min-height: 40px;
+    background: $primary;
+    border: none;
+    color: $white;
+    font-size: 16px;
+    transition: all ease .3s;
+  }
+  button:hover,
+  button:focus,
+  a.btn:hover,
+  a.btn:focus{
+    cursor: pointer;
+    background: $primaryh;
+    outline: none;
+  }
+  a.btn{
+    display: inline-block;
+    line-height: 40px;
+    min-width: 140px;
+    font-size: 18px;
+    text-decoration: none;
+  }
+  
+  ::-webkit-datetime-edit { 
+    padding: 1em; 
+  }
+  ::-webkit-inner-spin-button { display: none; }
+  ::-webkit-calendar-picker-indicator { 
+    color: $primary;
+    background: $white;
+    transform:scale(1.5,1);
+    padding-right: 10px;
+  }
+  
+  .error-box{
+    clear: both;
+    color: $error;
+    border: 2px solid $error;
+    background-color: $error-bg;
+    font-weight: 600;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .form-container{
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 30px;
+    box-sizing: border-box;
+    margin-top: 100px;
+    background: rgba(255,255,255,.89);
+    box-shadow: 0px 3px 20px 2px rgba(5, 20, 20, 0.4);
+    h2{
+      font-family: $serif-font;
+      color: $grey2;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 30px;
+    }
+    div,input,button, select{
+      width: 100%;
+      box-sizing: border-box;
+    }
+    div{
+      margin-bottom: 30px;
+    }
+    input,button,select{
+      height: 40px;
+    }
+    label{
+      display: block;
+      margin-bottom: 10px;
+    }
+    button{    
+      margin-top: 20px
+    }
+    .error-box{
+      margin: 0;
+      margin-top: 20px;
+    }
+  }
+  
+  .serif{
+    font-family: $serif-font;
+  }
+  
+  /*TRIP DETAIL*/
+  
+  .main-container {
+    width: 100%;
+    min-height: calc(100vh - 130px);
+    box-sizing: border-box;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .left-bar {
+  }
+  .right-container {
+  }
+  .left-bar,
+  .visit-search {
+    display: block;
+    float: left;
+    width: 350px;
+    background-color: $white;
+    height: calc(100vh - 130px);
+    overflow: auto;
+    box-sizing: border-box;
+    border-right: 1px solid $primary-tp1;
+    .content {
+      padding: 10px 20px;
+      clear: both;
+      h2 {
+        font-family: $serif-font;
+        text-align: center;
+        padding: 20px 0 0px 0;
+      }
+      h3 {
+        text-align: center;
+        margin: 30px 0 20px 0;
+        padding-top: 18px;
+        border-top: 2px solid $grey5;
+      }
+      .map-dates{
+        padding: 0px 9px 20px 9px;
+        border-bottom: 2px solid $grey5;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        box-sizing: border-box;
+        overflow: auto;
+        button{
+          width: 100%;
+          border: none;
+          background: $primary;
+          color: $white;
+          padding: 10px;
+          font-size: 14px;
+          margin: 20px 1px 0 1px;
+          &:hover{
+            cursor: pointer;
+            background: $primaryh
+          }
+        }
+      }
+    }
+  }
+  .visit-search{
+    .h2{
+      border-bottom: 2px solid $grey5;
+    }
+  }
+  .right-container,
+  .visit-timeline {
+    box-sizing: border-box;
+    min-height: calc(100vh - 130px);
+    height: 100%;
+    float: left;
+    width: calc(100vw - 350px);
+    background-color: #e8dbdb;
+    overflow: auto;
+    white-space: nowrap;
+    background-filter: blur(2px);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+    background-position: center;
+    text-align: center;
+  }
+  .visit-timeline {
+    padding: 10px;
+  }
+  .tab {
+    width: 50%;
+    text-align: center;
+    padding: 14px 0;
+    float: left;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: $primary;
+    font-weight: 800;
+    svg {
+      margin-right: 10px;
+    }
+  }
+  .tab.inactive {
+    background: $grey3;
+    color: $white;
+    &:hover {
+      background: $grey3h;
+    }
+  }
+  
+  .visit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: $primary;
+    margin: 20px 10px;
+    padding: 0 14px;
+    color: $white;
+    min-height: 30px;
+    line-height: 16px;
+    cursor: move;
+    cursor: grab;
+    box-shadow: 0px 3px 10px 0px rgba(5, 20, 20, 0.4);
+    font-size: 14px;
+    a {
+      padding-left: 10px;
+      border-left: 1px solid white;
+    }
+    span {
+      padding-right: 10px;
+    }
+    .num{
+      font-size: 20px;
+    }
+    .time{
+      font-weight: 600;
+      letter-spacing: 2px;
+      padding-right: 5px;
+    }
+  }
+  .visit.map-view{
+    justify-content: flex-start;
+    >div{
+      display: flex;
+      align-items: center;
+    }
+    .time{
+      padding-left: 14px;
+    }
+  }
+  agm-map {
+    height: calc(100vh - 130px);
+    width: 100%;
+  }
+  .si-frame.si-content-wrapper {
+    padding: 10px;
+  }
+  .si-content-wrapper {
+    height: 170px;
+    overflow: auto;
+    padding: 10px;
+    width: fit-content !important;
+    border: 1px solid $grey4;
+    .si-content{
+      height: 100%;
+      max-width: 100% !important;
+      img{
+        float: left;
+      }    
+      div[_ngcontent-c3]{
+        text-align: left;
+        float: left;
+        box-sizing: border-box;
+        width: 170px;
+        word-wrap: break-word;
+        white-space: normal;
+        h4{
+          color: $primary;
+          font-size: 16px;
+          margin-bottom: 10px;
+        }
+        p{
+          line-height: 20px;
+        }
+      }
+    }
+    .si-close-button{
+      margin-top: 0;
+      color: $error;
+      font-weight: bold;
+      opacity: 1;
+      padding: 5px 10px;
+    }
+    .si-close-button:hover{
+      background: #fff;
+    }
+  }
+  
+  .info-window-content{
+      padding: 12px 20px;
+      float: left;
+      box-sizing: border-box;
+      p{
+        word-break: normal;
+      }
+      .info-open{
+        >*{
+          display: inline-block;
+        }
+        svg{
+          vertical-align: top;
+          color: $grey3;
+          margin-top: 3px;
+          margin-right: 5px;
+        }
+      }
+  }

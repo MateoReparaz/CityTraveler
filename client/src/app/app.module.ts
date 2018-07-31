@@ -15,6 +15,9 @@ import { SingleTripComponent } from './single-trip/single-trip.component';
 import { LandingComponent } from './landing/landing.component';
 import { CreateTripComponent } from './create-trip/create-trip.component';
 import { DayComponent } from './day/day.component';
+import { AgmCoreModule } from '@agm/core';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +29,18 @@ import { DayComponent } from './day/day.component';
     SingleTripComponent,
     LandingComponent,
     CreateTripComponent,
-    DayComponent
+    DayComponent,
+    FooterComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    HttpModule
+    HttpModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCJ-HnA4GOnAkxPy2N4d24-yvb-GgdRp7A'
+    })
   ],
   providers: [SessionService],
   bootstrap: [AppComponent]

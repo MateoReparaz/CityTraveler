@@ -1,0 +1,30 @@
+@import "../../_variables.scss";
+.topbar{
+  z-index: 99999;
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: $primary;
+  color: white;
+  padding: 0 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px -6px 8px 9px rgba(5,20,20,0.3);
+
+  *{
+    margin: 0 10px;
+  }
+  a{
+    color: white;
+    text-decoration: none;
+    transition: all ease .3s;
+  }
+  a:hover{
+    cursor: pointer;
+    border-bottom: 2px solid white; 
+  }
+}

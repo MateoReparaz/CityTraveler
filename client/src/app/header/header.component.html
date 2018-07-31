@@ -1,0 +1,8 @@
+<div class="topbar">
+  <div class="menu" *ngIf="!sessionService.user">
+    <a [routerLink]="['/login']">Login</a> | <a [routerLink]="['/signup']">Signup</a>
+  </div>
+  <div class="menu" *ngIf="sessionService.user">
+      <span>Hello {{sessionService.user.username}}!</span> | <a [routerLink]="['trips']">Your trips</a> | <a (click)="logout()">Logout</a>
+  </div>
+</div>
