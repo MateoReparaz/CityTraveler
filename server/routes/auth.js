@@ -21,10 +21,10 @@ const login = (req, user) => {
 // SIGNUP
 router.post('/signup', (req, res, next) => {
 
-  const {username, password} = req.body;
+  const {username, password, email} = req.body;
 
   // Check for non empty user or password
-  if (!username || !password){
+  if (!username || !password || !email){
     next(new Error('You must provide valid credentials'));
   }
 
@@ -38,7 +38,8 @@ router.post('/signup', (req, res, next) => {
 
     return new User({
       username,
-      password: hashPass
+      password: hashPass,
+      email
     }).save();
   })
   .then( savedUser => login(req, savedUser)) // Login the user using passport

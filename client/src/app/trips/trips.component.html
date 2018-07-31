@@ -1,0 +1,5 @@
+<h2>Your trips</h2>
+<div *ngFor="let trip of trips">
+  <p [routerLink]= '["/trips", trip._id]'>{{city.name}}{{trip.date}}-{{trip.date}}</p>
+</div>
+<p [routerLink]= '["/trips/new"]'>New trip</p>

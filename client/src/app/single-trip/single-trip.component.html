@@ -1,0 +1,5 @@
+<h2>Lista de dias, cada uno con su lista</h2>
+<div *ngFor="let day of days">
+  <p [routerLink]= '["/days", day._id]'>DIA</p>
+</div>
+<a [routerLink]="['/day']">see day</a> <!-- botón de prueba para ir al componente dia -->

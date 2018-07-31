@@ -6,7 +6,7 @@ const City = require("../models/City");
 
 mongoose.Promise = Promise;
 mongoose
-  .connect( process.env.MONGODB_URI, { useMongoClient: true })
+  .connect( process.env.DBURL, { useMongoClient: true })
   .then(() => {
     console.log("Connected to Mongo!");
 
