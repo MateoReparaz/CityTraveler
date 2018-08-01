@@ -1,7 +1,27 @@
 <div class="main-container">
-  <h2>Your trips</h2>
-  <div *ngFor="let trip of trips">
-    <p [routerLink]='["/trips", trip._id]'>{{city.name}}{{trip.date}}-{{trip.date}}</p>
+  <h1>Your trips</h1>
+  <div class="trip-card trip" *ngFor="let trip of trips">
+    <a [routerLink]="['/trips',trip._id]">
+      <div class="card-img">
+        <img src="{{trip.city.img}}" alt="">
+      </div>
+      <div class="card-data">
+        <h3>
+          {{trip.city.name}}
+        </h3>
+        <p>
+          <i class="fa fa-calendar-alt"></i> {{trip.dates[0] | date : "d MMM" }} - {{trip.dates[trip.dates.length -1] | date : "d MMM, y"}}</p>
+      </div>
+    </a>
   </div>
-  <p [routerLink]='["/trips/new"]'>New trip</p>
+  <div class="trip-card new-trip">
+    <a [routerLink]="['/trips/new']">
+      <div class="circle">
+        <i class="fa fa-plus"></i>
+      </div>
+      <h3>
+        New Trip
+      </h3>
+    </a>
+  </div>
 </div>

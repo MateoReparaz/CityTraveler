@@ -15,7 +15,7 @@ export const routes: Routes = [
   { path:'signup', component:SignupComponent},
   { path:'login', component:LoginComponent},
   { path: "trips/new", component: NewTripComponent},
-  { path: "trips/create", component: CreateTripComponent},
+  { path: "trips/create/:id", component: CreateTripComponent},
   { path: "trips/:id", component: SingleTripComponent},
   { path: "day", component: DayComponent}
 ];

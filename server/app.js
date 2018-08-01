@@ -88,6 +88,10 @@ const authRouter = require('./routes/auth');
 const genericCrud = require('./routes/genericCRUD');
 app.use('/api/auth', authRouter);
 app.use('/api/user', genericCrud(require('./models/User')));
+app.use('/api/trips',require('./routes/trip'))
+app.use('/api/poi',require('./routes/poi')) 
+
+
 
 
 

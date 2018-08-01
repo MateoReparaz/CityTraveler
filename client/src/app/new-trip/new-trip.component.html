@@ -7,7 +7,7 @@
                     <option *ngFor="let c of countryList">{{c}}</option>
                 </select>
             </div>
-            <div *ngIf="cityList" class="select">
+            <div class="select">
                 <label for="country">City</label>
                 <select type="text" [(ngModel)]="city" name="country">
                     <option *ngFor="let c of cityList">{{c}}</option>
@@ -24,6 +24,5 @@
             <button (click)="newTrip()">Create Trip</button>
             <div class="error-box" *ngIf="error"> {{ error }} </div>
         </form>
-        <a [routerLink]="['/trips/create']">Create trip</a>
     </div>
 </div>

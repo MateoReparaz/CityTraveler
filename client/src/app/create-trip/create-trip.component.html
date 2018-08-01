@@ -1,4 +1,14 @@
-<h2>LISTA</h2>
-<h2>MAPA</h2>
-<agm-map [latitude]="51.678418" [longitude]="7.809007"></agm-map>
-<button (click)="createTrip()"> Create</button>
+<div class="main-container">
+    <div class="create">
+        <div>
+            <h2>P.O.I</h2>
+            <div *ngFor="let poi of pois">
+                <p>{{poi.name}}-{{poi.duration/1000}}min</p>
+            </div>
+        </div>
+        <div>
+            <agm-map [latitude]="51.678418" [longitude]="7.809007"></agm-map>
+            <button (click)="createTrip()"> Create </button>
+        </div>
+    </div>
+</div>

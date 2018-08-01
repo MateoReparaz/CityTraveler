@@ -5,11 +5,15 @@ const TripSchema = new Schema(
   {
     dates: { type: Array, required: true },
     userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    country:{
+      name: { type: String, required: true },
+      id: { type: Number, required: true }
+    },
     city: {
       name: { type: String, required: true },
       id: { type: Number, required: true }
     },
-    img: { type: String, required: true, default: "assets/img/map.jpg" },
+    img: { type: String, /* required: true, default: "" */ },
     location: {
       lat: { type: Number },
       lng: { type: Number }

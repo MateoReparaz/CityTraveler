@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PoiService } from '../../services/poi.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-trip',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateTripComponent implements OnInit {
 
-  constructor() { }
+  pois:any;
+
+  constructor(public poiService:PoiService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params =>
+    this.poiService.getAll(params.id).subscribe(pois => this.pois = pois))
   }
 
 }

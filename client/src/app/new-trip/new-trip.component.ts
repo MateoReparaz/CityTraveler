@@ -34,9 +34,9 @@ export class NewTripComponent implements OnInit {
       this.error = "Sorry, we don't support this country (yet!)"
     }
   }
-/*   newTrip(){
+  newTrip(){
     this.tripService
       .newTrip(this.country,this.city, this.start, this.end)
-      .subscribe(data => this.router.navigate(["trips"]), err => (this.error = err));
-  } */
+      .subscribe(data => this.router.navigate(["trips/create",data._id ]), err => (this.error = err));
+  }
 }
