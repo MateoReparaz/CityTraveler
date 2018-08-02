@@ -175,7 +175,7 @@ body {
     float: left;
     width: 350px;
     background-color: $white;
-    height: calc(100vh - 130px);
+    height: calc(100vh - 170px);
     overflow: auto;
     box-sizing: border-box;
     border-right: 1px solid $primary-tp1;
@@ -351,22 +351,3 @@ body {
     }
   }
   
-  .info-window-content{
-      padding: 12px 20px;
-      float: left;
-      box-sizing: border-box;
-      p{
-        word-break: normal;
-      }
-      .info-open{
-        >*{
-          display: inline-block;
-        }
-        svg{
-          vertical-align: top;
-          color: $grey3;
-          margin-top: 3px;
-          margin-right: 5px;
-        }
-      }
-  }

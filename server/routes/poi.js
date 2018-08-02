@@ -12,6 +12,15 @@ const apiOptions = {
   headers: { "x-api-key": process.env.SYGIC_API_KEY }
 };
 
+router.get("/trip/:id",(req,res,next) =>{
+  console.log("entra")
+  Trip.findById(req.params.id)
+  .then(trip => {
+    res.json(trip)
+  })
+  .catch(error => res.json(error));
+})
+
 router.get("/:id", (req, res, next) => {
   Trip.findById(req.params.id)
   .then(trip => {
@@ -37,5 +46,6 @@ router.get("/:id", (req, res, next) => {
   })
   .catch(error => res.json(error));
 });
+
 
 module.exports = router;

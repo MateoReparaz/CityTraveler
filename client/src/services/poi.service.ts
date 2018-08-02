@@ -21,10 +21,14 @@ errorHandler(e) {
 }
 
 getAll(id:any) {
-  console.log(this.url);
   return this.http
     .get(`${this.url}/api/poi/${id}`, this.options)
     .pipe(map(res => res.json()));
 }
 
+getTrip(id:any) {
+  return this.http
+    .get(`${this.url}/api/poi/trip/${id}`, this.options)
+    .pipe(map(res => res.json()));
+}
 }
