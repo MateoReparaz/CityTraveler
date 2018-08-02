@@ -1,13 +1,22 @@
 <div class="main-container">
     <div class="create">
-        <div>
+        <div class="list">
             <h2>P.O.I</h2>
             <div *ngFor="let poi of pois">
-                <p>{{poi.name}}-{{poi.duration/1000}}min</p>
+                <p>{{poi.name}}-{{poi.duration/60}}min</p>
             </div>
         </div>
         <div>
-            <agm-map [latitude]="51.678418" [longitude]="7.809007"></agm-map>
+            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                <agm-marker *ngFor="let m of markers" [latitude]="m.lat" [longitude]="m.lng"
+                    [label]="m.label">
+
+                    <agm-info-window>
+                        <strong>InfoWindow content</strong>
+                    </agm-info-window>
+
+                </agm-marker>
+            </agm-map>
             <button (click)="createTrip()"> Create </button>
         </div>
     </div>

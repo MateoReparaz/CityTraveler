@@ -41,9 +41,9 @@ export class TripsService {
   createTrip() {
     return this.http
       .post(
-        `${this.url}/api/trips/new`,
+        `${this.url}/api/trips/create`,
         {
-          /* ............... */
+          /*actualizar el viaje incluyendo los pois*/
         },
         this.options
       )

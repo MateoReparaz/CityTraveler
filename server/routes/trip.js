@@ -9,7 +9,7 @@ const Trip = require("../models/Trip");
 router.get("/", (req, res, next) => {
   Trip.find({}).exec((err, trips) => {
     if (err) {
-      return res.status(500).json(err);
+    return res.status(500).json(err);
     }
     return res.status(200).json(trips);
   });
@@ -48,7 +48,8 @@ router.post("/", (req, res, next) => {
   newTrip
     .save()
     .then(trip => res.status(200).json(trip))
-    .catch(error => res.status(500).json(error));
+    .catch(error => {console.log(error)
+      res.status(500).json(error)});
 });
 
 module.exports = router;

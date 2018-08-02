@@ -1,9 +1,15 @@
 agm-map {
-    height: 800px;
-    width: 900px;
+    height: 740px;
+    width: 1200px;
   }
   .create{
     display: flex;
     justify-content: space-around;
     margin: 30px
+  }
+  button{
+    width: 1200px
+  }
+  .list{
+    width:500px
   }

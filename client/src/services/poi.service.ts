@@ -1,6 +1,6 @@
 import { map } from 'rxjs/operators';
 import { Http } from '@angular/http';
-import { environment } from './../environments/environment.prod';
+import { environment } from './../environments/environment';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -21,6 +21,7 @@ errorHandler(e) {
 }
 
 getAll(id:any) {
+  console.log(this.url);
   return this.http
     .get(`${this.url}/api/poi/${id}`, this.options)
     .pipe(map(res => res.json()));
