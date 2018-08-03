@@ -1,13 +1,19 @@
 @import "../../_variables.scss";
 
-.body{
+.cardContainer {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
+
 h1 {
   margin: 40px 10px;
   font-family: $serif-font;
   text-align: center;
+}
+
+.card {
+min-width: 30%;
 }
 
 .main-container {
@@ -26,7 +32,4 @@ h1 {
 
 agm-map{
  height: 300px;
-}
-.form-container{
-    width: 30%
 }
