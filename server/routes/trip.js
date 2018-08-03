@@ -9,7 +9,7 @@ const Trip = require("../models/Trip");
 router.get("/", (req, res, next) => {
   Trip.find({}).exec((err, trips) => {
     if (err) {
-    return res.status(500).json(err);
+      return res.status(500).json(err);
     }
     return res.status(200).json(trips);
   });
@@ -27,10 +27,8 @@ const getDates = function(startDate, endDate) {
 
 router.post("/", (req, res, next) => {
   let dates = [];
-
   let countryName = req.body.country;
   let countryID = countries[countryName];
-
   let cityName = req.body.city;
   let cityID = cities[countryID][cityName];
   const newTrip = new Trip({
@@ -48,8 +46,30 @@ router.post("/", (req, res, next) => {
   newTrip
     .save()
     .then(trip => res.status(200).json(trip))
-    .catch(error => {console.log(error)
-      res.status(500).json(error)});
+    .catch(error => {
+      console.log(error);
+      res.status(500).json(error);
+    });
+});
+
+router.post("/trip/update", (req, res, next) => {
+  const { tripId, poiId, tripDay } = req.body;
+  Trip.findById(tripId).then(trip => {
+    const day = trip.schedule.find(element => element.day == tripDay);
+    if (day == undefined) {
+      trip
+        .update({ $push: { schedule: { day: tripDay, pois: [poiId] } } })
+        .then(() => res.json())
+        .catch(error => res.json(error));
+    } else {
+      trip.schedule[trip.schedule.indexOf(day)].pois.push(poiId);
+      let p = trip.schedule;
+      trip
+        .update({ schedule: p })
+        .then(() => res.json())
+        .catch(err => res.json(err));
+    }
+  });
 });
 
 module.exports = router;

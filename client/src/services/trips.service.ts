@@ -5,16 +5,13 @@ import "rxjs";
 import { map, catchError } from "rxjs/operators";
 import { of } from "rxjs";
 
-
 @Injectable({
   providedIn: "root"
 })
 export class TripsService {
-
   options: object = { withCredentials: true };
-  url:string = environment.BASEURL;
-  
-  
+  url: string = environment.BASEURL;
+
   constructor(private http: Http) {}
 
   errorHandler(e) {
@@ -32,12 +29,26 @@ export class TripsService {
 
   newTrip(country, city, start, end) {
     return this.http
-      .post(`${this.url}/api/trips`, { country, city, start, end }, this.options)
-      .pipe(map(res => res.json()),
-      catchError(e => of(this.errorHandler(e)))
-    )
-      
+      .post(
+        `${this.url}/api/trips`,
+        { country, city, start, end },
+        this.options
+      )
+      .pipe(
+        map(res => res.json()),
+        catchError(e => of(this.errorHandler(e)))
+      );
   }
+
+  updateTrip(poiId, tripDay, tripId) {
+    return this.http
+      .post(`${this.url}/api/trips/trip/update`, { poiId, tripDay, tripId }, this.options)
+      .pipe(
+        map(res => res.json()),
+        catchError(e => of(this.errorHandler(e)))
+      );
+  }
+
   createTrip() {
     return this.http
       .post(
@@ -50,10 +61,9 @@ export class TripsService {
       .pipe(map(res => res.json()));
   }
 
-  getById(id:string) {
+  getById(id: string) {
     return this.http
       .get(`${this.url}/api/trips/${id}`, this.options)
       .pipe(map(res => res.json()));
   }
-  
 }

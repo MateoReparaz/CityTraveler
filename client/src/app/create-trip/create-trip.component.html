@@ -16,7 +16,9 @@
                             <p>{{m.info}}</p>
                         </div>
                         <div *ngIf="trip" class="buttons">
-                            <button class="smallButton" *ngFor="let date of trip.dates">Add to{{date | date : "d MMM"}}</button>
+                            <div *ngFor="let date of trip.dates">
+                                <button (click)="updateTrip(m.id, date)" class="smallButton" >Add to{{date | date : "d MMM"}}</button>
+                            </div>
                         </div>
                     </agm-info-window>
 

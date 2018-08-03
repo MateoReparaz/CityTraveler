@@ -29,7 +29,7 @@ router.get("/:id", (req, res, next) => {
         if ((!city.pois.length)) {
           axios
             .get(
-              `/places/list?parents=city:${trip.city.id}&level=poi&limit=50`,
+              `/places/list?parents=city:${trip.city.id}&level=poi&limit=100`,
               apiOptions
             )
             .then(poi => {

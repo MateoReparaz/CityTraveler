@@ -17,7 +17,15 @@ const TripSchema = new Schema(
     location: {
       lat: { type: Number },
       lng: { type: Number }
-    }
+    },
+    schedule: [
+      {
+        day: String,
+        pois: []
+      }
+    ]
+  
+    
   },
   {
     timestamps: {
