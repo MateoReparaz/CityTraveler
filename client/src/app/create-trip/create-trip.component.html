@@ -17,14 +17,14 @@
                         </div>
                         <div *ngIf="trip" class="buttons">
                             <div *ngFor="let date of trip.dates">
-                                <button (click)="updateTrip(m.id, date)" class="smallButton" >Add to{{date | date : "d MMM"}}</button>
+                                <button (click)="updateTrip(m.poi, date)" class="smallButton" >Add to{{date | date : "d MMM"}}</button>
                             </div>
                         </div>
                     </agm-info-window>
 
                 </agm-marker>
             </agm-map>
-            <button (click)="createTrip()"> Create </button>
+            <button [routerLink]="['/trips']"> Create </button>
         </div>
     </div>
 </div>

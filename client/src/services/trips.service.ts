@@ -40,13 +40,23 @@ export class TripsService {
       );
   }
 
-  updateTrip(poiId, tripDay, tripId) {
+  updateTrip(poi, tripDay, tripId) {
     return this.http
-      .post(`${this.url}/api/trips/trip/update`, { poiId, tripDay, tripId }, this.options)
+      .post(
+        `${this.url}/api/trips/trip/update`,
+        { poi, tripDay, tripId },
+        this.options
+      )
       .pipe(
         map(res => res.json()),
         catchError(e => of(this.errorHandler(e)))
       );
+  }
+
+  getById(id: string) {
+    return this.http
+      .get(`${this.url}/api/trips/${id}`, this.options)
+      .pipe(map(res => res.json()));
   }
 
   createTrip() {
@@ -58,12 +68,6 @@ export class TripsService {
         },
         this.options
       )
-      .pipe(map(res => res.json()));
-  }
-
-  getById(id: string) {
-    return this.http
-      .get(`${this.url}/api/trips/${id}`, this.options)
       .pipe(map(res => res.json()));
   }
 }

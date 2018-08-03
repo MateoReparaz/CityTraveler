@@ -53,16 +53,16 @@ router.post("/", (req, res, next) => {
 });
 
 router.post("/trip/update", (req, res, next) => {
-  const { tripId, poiId, tripDay } = req.body;
+  const { tripId, poi, tripDay } = req.body;
   Trip.findById(tripId).then(trip => {
     const day = trip.schedule.find(element => element.day == tripDay);
     if (day == undefined) {
       trip
-        .update({ $push: { schedule: { day: tripDay, pois: [poiId] } } })
+        .update({ $push: { schedule: { day: tripDay, pois: [poi] } } })
         .then(() => res.json())
         .catch(error => res.json(error));
     } else {
-      trip.schedule[trip.schedule.indexOf(day)].pois.push(poiId);
+      trip.schedule[trip.schedule.indexOf(day)].pois.push(poi);
       let p = trip.schedule;
       trip
         .update({ schedule: p })

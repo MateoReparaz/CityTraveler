@@ -1,6 +1,9 @@
 <div class="main-container">
-    <h2>DIA</h2>
-    <h3>lsta de cosas que hacer</h3>
-    <h3>mapa</h3>
-    <agm-map [latitude]="51.678418" [longitude]="7.809007"></agm-map>
-</div>
+        <div *ngIf="trip">
+            <div *ngFor=" let day of trip.schedule"></div>
+            <h2>{{day.day}}</h2>
+            <div ngFor="let poi of day.pois"></div>
+            <p>{{poi}}</p>
+            <agm-map [latitude]="51.678418" [longitude]="7.809007"></agm-map>
+        </div>
+    </div>

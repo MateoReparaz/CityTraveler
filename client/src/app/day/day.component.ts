@@ -1,3 +1,5 @@
+import { ActivatedRoute } from '@angular/router';
+import { DayService } from './../../services/day.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DayComponent implements OnInit {
 
-  constructor() { }
+  trip : object;
+  
+  constructor(public dayService:DayService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-  }
+    this.route.params.subscribe(params =>
+      this.dayService.getTrip(params.id).subscribe(trip => {
+        console.log(params)
+        this.trip = trip;
+    })
+
+    )}
 
 }

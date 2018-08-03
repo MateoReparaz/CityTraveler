@@ -1,0 +1,32 @@
+@import "../../_variables.scss";
+
+.body{
+    display: flex;
+    justify-content: space-around;
+}
+h1 {
+  margin: 40px 10px;
+  font-family: $serif-font;
+  text-align: center;
+}
+
+.main-container {
+  width: 100%;
+  min-height: calc(100vh - 110px);
+  box-sizing: border-box;
+  padding: 30px 10px;
+  background-color: $white;
+}
+
+.trip-card {
+  width: calc(33.2% - 30px);
+  height: 300px;
+  margin: 15px;
+}
+
+agm-map{
+ height: 300px;
+}
+.form-container{
+    width: 30%
+}

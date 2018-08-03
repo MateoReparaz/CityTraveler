@@ -1,7 +1,12 @@
 <div class="main-container">
-  <h2>Lista de dias, cada uno con su lista</h2>
-  <div *ngFor="let day of days">
-    <p [routerLink]= '["/days", day._id]'>DIA</p>
+  <div class="" *ngIf="trip">
+    <div class="form-container" *ngFor=" let day of trip.schedule">
+      <h2>{{day.day | date : "d MMM"}}</h2>
+      <div *ngFor="let poi of day.pois">
+        <p class="visit">{{poi.name}}</p>
+      </div>
+      <agm-map [latitude]="51.678418" [longitude]="7.809007" ></agm-map>
+    </div>
   </div>
-  <a [routerLink]="['/day']">see day</a> <!-- botón de prueba para ir al componente dia -->
 </div>
+<a [routerLink]="['/day']">see day</a>

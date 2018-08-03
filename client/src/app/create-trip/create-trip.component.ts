@@ -10,6 +10,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./create-trip.component.scss"]
 })
 export class CreateTripComponent implements OnInit {
+  
   pois: Array<any>;
   markers = [{}];
   lat: number;
@@ -57,7 +58,7 @@ text: 'Some Text',
         name: element.name,
         img: element.thumbnail_url,
         info: element.perex,
-        id: element.id
+        poi: element
       });
     });
   }
