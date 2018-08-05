@@ -3,7 +3,7 @@
   <div class="trip-card trip" *ngFor="let trip of trips">
     <a [routerLink]="['/trips',trip._id]">
       <div class="card-img">
-        <img src="{{trip.city.img}}" alt="">
+          <img class="card-img" src="https://restcountries.eu/data/esp.svg">
       </div>
       <div class="card-data">
         <h3>

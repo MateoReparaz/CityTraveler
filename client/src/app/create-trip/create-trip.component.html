@@ -7,24 +7,30 @@
             </div>
         </div>
         <div>
-            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-                <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label">
-                    <agm-info-window>
-                        <h3>{{m.name}}</h3>
-                        <div class="info">
-                            <img src="{{m.img}}" alt="">
-                            <p *ngIf="m.info"><b>Info:</b><br> {{m.info}}</p>
-                            <p><b>Visit time:</b><br> {{m.duration/60}}min</p>
-                        </div>
-                        <div *ngIf="trip" class="buttons">
-                            <div *ngFor="let date of trip.dates">
-                                <button (click)="updateTrip(m.poi, date)" class="smallButton">Add to{{date | date : "d MMM"}}</button>
+            <div class="map">
+                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                    <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label">
+                        <agm-info-window>
+                            <h3>{{m.name}}</h3>
+                            <div class="info">
+                                <img src="{{m.img}}" alt="">
+                                <p *ngIf="m.info">
+                                    <b>Info:</b>
+                                    <br> {{m.info}}</p>
+                                <p>
+                                    <b>Visit time:</b>
+                                    <br> {{m.duration/60}}min</p>
                             </div>
-                        </div>
-                    </agm-info-window>
-                </agm-marker>
-            </agm-map>
-            <button [routerLink]="['/trips']"> Create </button>
+                            <div *ngIf="trip" class="buttons">
+                                <div *ngFor="let date of trip.dates">
+                                    <button (click)="updateTrip(m.poi, date)" class="smallButton">Add to{{date | date : "d MMM"}}</button>
+                                </div>
+                            </div>
+                        </agm-info-window>
+                    </agm-marker>
+                </agm-map>
+            </div>
+            <button class="map" [routerLink]="['/trips']"> Create </button>
         </div>
     </div>
 </div>

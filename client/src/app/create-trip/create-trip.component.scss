@@ -4,6 +4,9 @@ agm-map {
     height: 740px;
     width: 1200px;
   }
+  .map{
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.3);
+  }
   .create{
     display: flex;
     justify-content: space-around;
@@ -43,3 +46,10 @@ agm-map {
   agm-marker{
     background-color: $primary !important;
   }
+  .main-container {
+    width: 100%;
+    min-height: calc(100vh - 150px);
+    box-sizing: border-box;
+    padding: 30px 10px;
+    background-color: $white;
+  }  
