@@ -3,6 +3,7 @@ import { marker } from "../../interfaces/markers";
 import { Component, OnInit } from "@angular/core";
 import { PoiService } from "../../services/poi.service";
 import { ActivatedRoute } from "@angular/router";
+import { defaultIfEmpty } from "rxjs/operators";
 
 @Component({
   selector: "app-create-trip",
@@ -58,6 +59,8 @@ text: 'Some Text',
         name: element.name,
         img: element.thumbnail_url,
         info: element.perex,
+        duration:element.duration,
+        rating:element.rating,
         poi: element
       });
     });

@@ -6,6 +6,7 @@
       <p class="visit">{{poi.name}}</p>
     </div>
     <agm-map [latitude]="51.678418" [longitude]="7.809007" ></agm-map>
+    <button [routerLink]='["trips/create"]'>Edit</button>
   </div>
 </div>
 <a [routerLink]="['/day']">see day</a>
