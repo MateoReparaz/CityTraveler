@@ -59,15 +59,21 @@ export class TripsService {
       .pipe(map(res => res.json()));
   }
 
-  createTrip() {
+  deleteTrip(id: string){
     return this.http
-      .post(
-        `${this.url}/api/trips/create`,
-        {
-          /*actualizar el viaje incluyendo los pois*/
-        },
-        this.options
-      )
-      .pipe(map(res => res.json()));
+    .get(`${this.url}/api/trips/delete/${id}`, this.options)
+    .pipe(map(res => res.json()));
   }
+
+  // createTrip() {
+  //   return this.http
+  //     .post(
+  //       `${this.url}/api/trips/create`,
+  //       {
+  //         /*actualizar el viaje incluyendo los pois*/
+  //       },
+  //       this.options
+  //     )
+  //     .pipe(map(res => res.json()));
+  // }
 }

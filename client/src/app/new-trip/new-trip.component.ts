@@ -35,6 +35,9 @@ export class NewTripComponent implements OnInit {
     }
   }
   newTrip(){
+/*     if(this.city === undefined) {
+      this.city == document.getElementById('city').getElementsByTagName('option')[0].text;
+    } */
     this.tripService
       .newTrip(this.country,this.city, this.start, this.end)
       .subscribe(data => this.router.navigate(["trips/create",data._id ]), err => (this.error = err));

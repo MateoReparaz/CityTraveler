@@ -17,5 +17,6 @@ export const routes: Routes = [
   { path: "trips/new", component: NewTripComponent},
   { path: "trips/create/:id", component: CreateTripComponent},
   { path: "trips/:id", component: SingleTripComponent},
+  { path:'trips/delete/:id', component:TripsComponent},
   { path: "day", component: DayComponent}
 ];

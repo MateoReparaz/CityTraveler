@@ -60,7 +60,6 @@ text: 'Some Text',
         img: element.thumbnail_url,
         info: element.perex,
         duration:element.duration,
-        rating:element.rating,
         poi: element
       });
     });

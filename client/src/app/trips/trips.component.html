@@ -11,9 +11,11 @@
         </h3>
         <p>
           <i class="fa fa-calendar-alt"></i> {{trip.dates[0] | date : "d MMM" }} - {{trip.dates[trip.dates.length -1] | date : "d MMM, y"}}</p>
-      </div>
-    </a>
-  </div>
+        </div>
+      </a>
+      <button class="button2" [routerLink]='["create",trip._id]'>Edit</button>
+      <button (click)="deleteTrip(trip._id)">Delete trip</button>
+    </div>
   <div class="trip-card new-trip">
     <a [routerLink]="['/trips/new']">
       <div class="circle">

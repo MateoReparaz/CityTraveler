@@ -72,4 +72,17 @@ router.post("/trip/update", (req, res, next) => {
   });
 });
 
+router.get('/delete/:id',(req,res,next) => {
+  const {id} = req.params;
+  Trip.findByIdAndRemove(id)
+      .then( obj => {
+          if(obj){
+              res.status(200).json({status:`Removed from db`});
+          }else{
+              throw new Error("Not existing ID");
+          }
+      })
+      .catch(e => next(e))
+})
+
 module.exports = router;

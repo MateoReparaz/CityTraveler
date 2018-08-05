@@ -9,8 +9,8 @@
             </div>
             <div class="select">
                 <label for="country">City</label>
-                <select type="text" [(ngModel)]="city" name="country">
-                    <option *ngFor="let c of cityList">{{c}}</option>
+                <select type="text" [(ngModel)]="city" name="country" id ="city">
+                    <option *ngFor="let c of cityList" selected="selected">{{c}}</option>
                 </select>
             </div>
             <div>

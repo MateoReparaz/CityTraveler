@@ -47,6 +47,7 @@ h1 {
   }
 }
 .trip {
+  position: relative;
   box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.3);
   h3 {
     color: $primary;
@@ -71,6 +72,18 @@ h1 {
       left: 0;
       width: 100%;
     }
+  }
+  button {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 90px;
+  }
+  .button2{
+    position: absolute;
+    bottom:60px;
+    right: 15px;
+    width: 90px
   }
 }
 .new-trip {

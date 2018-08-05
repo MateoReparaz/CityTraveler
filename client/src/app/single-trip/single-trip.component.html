@@ -1,12 +1,15 @@
-
-<div *ngIf="trip" class="cardContainer">
-  <div class="form-container card" *ngFor=" let day of trip.schedule">
-    <h2>{{day.day | date : "d MMM"}}</h2>
-    <div *ngFor="let poi of day.pois">
-      <p class="visit">{{poi.name}}</p>
+<div class="main-container">
+  <div *ngIf="trip" class="cardContainer">
+    <div class="form-container card" *ngFor=" let day of trip.schedule">
+      <h2>{{day.day | date : "d MMM"}}</h2>
+      <div *ngFor="let poi of day.pois">
+        <p class="visit">{{poi.name}} - Visit time:{{poi.duration/60}}min</p>
+      </div>
+      <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label">
+        </agm-marker>
+      </agm-map>
     </div>
-    <agm-map [latitude]="51.678418" [longitude]="7.809007" ></agm-map>
-    <button [routerLink]='["trips/create"]'>Edit</button>
   </div>
+  <a [routerLink]="['/day']">see day</a>
 </div>
-<a [routerLink]="['/day']">see day</a>
