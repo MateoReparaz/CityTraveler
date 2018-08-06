@@ -20,6 +20,7 @@ export class TripsComponent implements OnInit {
 
   ngOnInit() {
     this.tripsService.getAll().subscribe(trips => (this.trips = trips));
+
   }
 
   deleteTrip(id: any) {
@@ -28,3 +29,5 @@ export class TripsComponent implements OnInit {
     this.tripsService.getAll().subscribe(trips => (this.trips = trips));
   }
 }
+
+

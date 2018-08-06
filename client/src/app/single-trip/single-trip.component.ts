@@ -23,27 +23,5 @@ export class SingleTripComponent implements OnInit {
         this.trip = trip;
       })
     );
-    this.route.params.subscribe(params =>
-      this.poiService.getAll(params.id).subscribe(pois => {
-        this.pois = pois;
-        this.lat = this.pois[0].location.lat;
-        this.lng = this.pois[0].location.lng;
-        this.createMarker();
-      })
-    );
-  }
-
-  createMarker() {
-    this.pois.forEach(element => {
-      this.markers.push({
-        lat: element.location.lat,
-        lng: element.location.lng,
-        draggable: false,
-        name: element.name,
-        img: element.thumbnail_url,
-        info: element.perex,
-        duration:element.duration,
-      });
-    });
   }
 }

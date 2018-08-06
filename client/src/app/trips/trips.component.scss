@@ -1,7 +1,7 @@
 @import "../../_variables.scss";
 
 h1 {
-  margin: 40px 10px;
+  margin: 20px 10px;
   font-family: $serif-font;
   text-align: center;
 }
@@ -88,6 +88,8 @@ h1 {
 }
 .new-trip {
   text-align: center;
+  background-image: url("../../assets/images/newflag.jpg");
+
   a {
     color: $primary;
     text-decoration: none;

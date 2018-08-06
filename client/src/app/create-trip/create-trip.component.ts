@@ -3,7 +3,6 @@ import { marker } from "../../interfaces/markers";
 import { Component, OnInit } from "@angular/core";
 import { PoiService } from "../../services/poi.service";
 import { ActivatedRoute } from "@angular/router";
-import { defaultIfEmpty } from "rxjs/operators";
 
 @Component({
   selector: "app-create-trip",
@@ -11,7 +10,6 @@ import { defaultIfEmpty } from "rxjs/operators";
   styleUrls: ["./create-trip.component.scss"]
 })
 export class CreateTripComponent implements OnInit {
-  
   pois: Array<any>;
   markers = [{}];
   lat: number;
@@ -59,20 +57,29 @@ text: 'Some Text',
         name: element.name,
         img: element.thumbnail_url,
         info: element.perex,
-        duration:element.duration,
+        duration: element.duration,
         poi: element
       });
     });
   }
 
   updateTrip(id, date) {
-    // const schedule = {tripId: req.params.id, poiId, tripDay}
-   
     this.route.params.subscribe(params =>
       this.tripsService.updateTrip(id, date, params.id).subscribe(() => {
-        
-        console.log("todo ok", params.id);
       })
     );
+  }
+
+  lastSelectedInfoWindow: any;
+  markerClick(infoWindow: any) {
+    if (infoWindow == this.lastSelectedInfoWindow) {
+      return;
+    }
+    if (this.lastSelectedInfoWindow != null) {
+      try {
+        this.lastSelectedInfoWindow.close();
+      } catch {} //in case if you reload your markers
+    }
+    this.lastSelectedInfoWindow = infoWindow;
   }
 }

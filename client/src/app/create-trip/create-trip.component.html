@@ -8,22 +8,24 @@
         </div>
         <div>
             <div class="map">
-                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-                    <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label">
-                        <agm-info-window>
+                <agm-map #gm [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                    <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label" (markerClick)="markerClick(infoWindow)">
+
+                        <agm-info-window #infoWindow>
                             <h3>{{m.name}}</h3>
                             <div class="info">
-                                <img src="{{m.img}}" alt="">
+                                <img *ngIf="m.img" src="{{m.img}}" alt="">
+                                <img *ngIf="!m.img" src="../../assets/images/thumnail.jpg" width="150px" height="150px" alt="">
                                 <p *ngIf="m.info">
                                     <b>Info:</b>
                                     <br> {{m.info}}</p>
-                                <p>
-                                    <b>Visit time:</b>
-                                    <br> {{m.duration/60}}min</p>
+                                <div class="vTime">
+                                    <p><b>Visit time:</b><br> {{m.duration/60}}min <br><br> <img src="../../assets/images/hiking.png" width="70px"> </p>
+                                </div>
                             </div>
                             <div *ngIf="trip" class="buttons">
                                 <div *ngFor="let date of trip.dates">
-                                    <button (click)="updateTrip(m.poi, date)" class="smallButton">Add to{{date | date : "d MMM"}}</button>
+                                    <button (click)="updateTrip(m.poi, date); markerClick(infoWindow)" class="smallButton">Add to{{date | date : "d MMM"}}</button>
                                 </div>
                             </div>
                         </agm-info-window>

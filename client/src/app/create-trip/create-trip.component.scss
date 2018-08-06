@@ -1,55 +1,60 @@
 @import "../../_variables.scss";
 
+.main-container {
+  width: 100%;
+  min-height: calc(100vh - 110px);
+  box-sizing: border-box;
+  padding: 30px 10px;
+  background-color: $white;
+}
+
 agm-map {
-    height: 740px;
-    width: 1200px;
+  height: 700px;
+  width: 1200px;
+}
+.map {
+  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.3);
+}
+.create {
+  display: flex;
+  justify-content: space-around;
+  margin: 30px;
+}
+button {
+  width: 1200px;
+  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.3);
+}
+.list {
+  width: 500px;
+}
+.smallButton {
+  width: 90px;
+  height: 20px;
+  padding: 5px;
+  font-size: 1em;
+  margin: 8px 0;
+}
+.info {
+  display: flex;
+  justify-content: space-around;
+  p {
+    width: 150px;
+    margin: 15px;
+    padding: 5px;
+    font-size: 1.2em;
   }
-  .map{
-    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.3);
+  .vtime {
+    width: 50px;
   }
-  .create{
-    display: flex;
-    justify-content: space-around;
-    margin: 30px
-  }
-  button{
-    width: 1200px
-  }
-  .list{
-    width:500px
-  }
-  .smallButton{
-    width: 90px ;
-    height: 20px;
-    padding:5px;
-    font-size: 1em;
-    margin:8px 0;
-  }
-  .info{
-    display: flex;
-    justify-content: space-around;
-    p{
-      width:150px;
-      margin:10px 5px;
-      padding:5px;
-      
-    }
-  }
-  h3{
-    text-align: center;
-    margin: 5px 0;
-  }
-  .buttons{
-    display: flex;
-    justify-content: space-evenly  ;
-  }
-  agm-marker{
-    background-color: $primary !important;
-  }
-  .main-container {
-    width: 100%;
-    min-height: calc(100vh - 150px);
-    box-sizing: border-box;
-    padding: 30px 10px;
-    background-color: $white;
-  }  
+}
+h3 {
+  text-align: center;
+  margin: 5px 0;
+}
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+agm-marker {
+  background-color: $primary !important;
+}

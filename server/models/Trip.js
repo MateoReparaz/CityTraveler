@@ -13,7 +13,7 @@ const TripSchema = new Schema(
       name: { type: String, required: true },
       id: { type: Number, required: true }
     },
-    img: { type: String, /* required: true, default: "" */ },
+    img: { type: String, default: "../public/images/deffault.jpg"  },
     location: {
       lat: { type: Number },
       lng: { type: Number }
@@ -23,9 +23,7 @@ const TripSchema = new Schema(
         day: String,
         pois: []
       }
-    ]
-  
-    
+    ] 
   },
   {
     timestamps: {

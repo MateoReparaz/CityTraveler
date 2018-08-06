@@ -5,6 +5,7 @@ const user = require("../models/User");
 const moment = require("moment");
 const router = express.Router();
 const Trip = require("../models/Trip");
+const flags = require("../models/Flag")
 
 router.get("/", (req, res, next) => {
   Trip.find({}).exec((err, trips) => {
@@ -28,6 +29,10 @@ const getDates = function(startDate, endDate) {
 router.post("/", (req, res, next) => {
   let dates = [];
   let countryName = req.body.country;
+  let img = flags.filter(e=>{
+    return e.name == countryName
+  })
+  console.log(img)
   let countryID = countries[countryName];
   let cityName = req.body.city;
   let cityID = cities[countryID][cityName];
@@ -41,7 +46,8 @@ router.post("/", (req, res, next) => {
     city: {
       name: cityName,
       id: cityID
-    }
+    },
+    img:img[0].flag
   });
   newTrip
     .save()
