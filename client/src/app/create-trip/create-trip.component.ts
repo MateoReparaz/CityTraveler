@@ -16,6 +16,7 @@ export class CreateTripComponent implements OnInit {
   lng: number;
   zoom: number = 14;
   trip: object;
+  lastSelectedInfoWindow: any;
   /*   labelOptions = {
 color: '#CC0000',
 fontFamily: '',
@@ -69,9 +70,14 @@ text: 'Some Text',
       })
     );
   }
-
-  lastSelectedInfoWindow: any;
+  Open(i: number){
+    console.log(this.markers[1]["infoWindow"]);
+    this.markers[i]["infoWindow"].open();
+  }
+  
   markerClick(infoWindow: any) {
+    console.log(infoWindow)
+    infoWindow.close()
     if (infoWindow == this.lastSelectedInfoWindow) {
       return;
     }
@@ -82,4 +88,6 @@ text: 'Some Text',
     }
     this.lastSelectedInfoWindow = infoWindow;
   }
+
+
 }

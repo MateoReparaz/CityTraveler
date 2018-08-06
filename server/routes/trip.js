@@ -8,7 +8,9 @@ const Trip = require("../models/Trip");
 const flags = require("../models/Flag")
 
 router.get("/", (req, res, next) => {
-  Trip.find({}).exec((err, trips) => {
+  console.log(req.user._id)
+  Trip.find({userId:req.user._id})
+  .exec((err, trips) => {
     if (err) {
       return res.status(500).json(err);
     }
@@ -32,7 +34,6 @@ router.post("/", (req, res, next) => {
   let img = flags.filter(e=>{
     return e.name == countryName
   })
-  console.log(img)
   let countryID = countries[countryName];
   let cityName = req.body.city;
   let cityID = cities[countryID][cityName];

@@ -18,6 +18,7 @@ import { DayComponent } from './day/day.component';
 import { AgmCoreModule } from '@agm/core';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { HeaderComponent } from './header/header.component';
     DayComponent,
     FooterComponent,
     HeaderComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

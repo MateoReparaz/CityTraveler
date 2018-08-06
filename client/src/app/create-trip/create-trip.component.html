@@ -1,26 +1,34 @@
 <div class="main-container">
     <div class="create">
-        <div class="list left-bar ">
-            <h2>Points of Interest</h2>
-            <div *ngFor="let poi of pois">
-                <a class="visit">{{poi.name}}, visit time: {{poi.duration/60}}min</a>
+        <div class="list left-bar">
+            <h2>{{trip.city.name}}: Points of Interest</h2>
+            <div class="content">
+                <input id="things_name" placeholder="Find place to visit" type="text" [(ngModel)]="pattern">
+            </div>
+            <div *ngFor="let poi of pois | filter:'name':pattern; let i = index">
+                <a class="visit" (click)="Open(i)">{{poi.name}}, visit time: {{poi.duration/60}}min</a>
             </div>
         </div>
         <div>
             <div class="map">
                 <agm-map #gm [latitude]="lat" [longitude]="lng" [zoom]="zoom">
                     <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label" (markerClick)="markerClick(infoWindow)">
-
                         <agm-info-window #infoWindow>
-                            <h3>{{m.name}}</h3>
+                            <h2>{{m.name}}</h2>
                             <div class="info">
-                                <img *ngIf="m.img" src="{{m.img}}" alt="">
-                                <img *ngIf="!m.img" src="../../assets/images/thumnail.jpg" width="150px" height="150px" alt="">
+                                <img class="img" *ngIf="m.img" src="{{m.img}}" alt="">
+                                <img class="img" *ngIf="!m.img" src="../../assets/images/thumnail.jpg" width="150px" height="150px" alt="">
                                 <p *ngIf="m.info">
                                     <b>Info:</b>
                                     <br> {{m.info}}</p>
                                 <div class="vTime">
-                                    <p><b>Visit time:</b><br> {{m.duration/60}}min <br><br> <img src="../../assets/images/hiking.png" width="70px"> </p>
+                                    <p>
+                                        <b>Visit time:</b>
+                                        <br> {{m.duration/60}}min
+                                        <br>
+                                        <br>
+                                        <img src="../../assets/images/hiking.png" width="70px">
+                                    </p>
                                 </div>
                             </div>
                             <div *ngIf="trip" class="buttons">

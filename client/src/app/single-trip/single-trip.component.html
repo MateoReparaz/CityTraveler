@@ -1,12 +1,12 @@
 <div class="main-container">
   <div *ngIf="trip" class="cardContainer">
-    <div class="form-container card" *ngFor=" let day of trip.schedule">
+    <div class="form-container card " *ngFor=" let day of trip.schedule">
       <h2>{{day.day | date : "d MMM"}}</h2>
       <div *ngFor="let poi of day.pois">
         <p class="visit">{{poi.name}} - Visit time:{{poi.duration/60}}min</p>
       </div>
       <div class="map">
-        <agm-map [latitude]="day.pois[0].location.lat" [longitude]="day.pois[0].location.lng">
+        <agm-map [latitude]="day.pois[0].location.lat" [longitude]="day.pois[0].location.lng" [zoom]="15">
           <agm-marker *ngFor="let m of day.pois; let i = index" [latitude]="m.location.lat" [longitude]="m.location.lng" [label]="m.label">
           </agm-marker>
         </agm-map>

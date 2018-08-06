@@ -160,15 +160,13 @@ body {
   
   .main-container {
     width: 100%;
-    min-height: calc(100vh - 110px);
+    min-height: calc(100vh - 90px);
     box-sizing: border-box;
     padding: 0;
     overflow: hidden;
     
   }
   
-  .left-bar {
-  }
   .right-container {
   }
   .left-bar,
@@ -177,46 +175,15 @@ body {
     float: left;
     width: 350px;
     background-color: $white;
-    height: calc(100vh - 170px);
-    overflow: auto;
+    height: calc(100vh - 200px);
+    overflow-y: auto;
+    overflow-x: hidden;
     box-sizing: border-box;
     border-right: 1px solid $primary-tp1;
     .content {
       padding: 10px 20px;
       clear: both;
-      h2 {
-        font-family: $serif-font;
-        text-align: center;
-        padding: 20px 0 0px 0;
-      }
-      h3 {
-        text-align: center;
-        margin: 30px 0 20px 0;
-        padding-top: 18px;
-        border-top: 2px solid $grey5;
-      }
-      .map-dates{
-        padding: 0px 9px 20px 9px;
-        border-bottom: 2px solid $grey5;
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        box-sizing: border-box;
-        overflow: auto;
-        button{
-          width: 100%;
-          border: none;
-          background: $primary;
-          color: $white;
-          padding: 10px;
-          font-size: 14px;
-          margin: 20px 1px 0 1px;
-          &:hover{
-            cursor: pointer;
-            background: $primaryh
-          }
-        }
-      }
+      width: 100%;
     }
   }
   .visit-search{
@@ -243,26 +210,6 @@ body {
   }
   .visit-timeline {
     padding: 10px;
-  }
-  .tab {
-    width: 50%;
-    text-align: center;
-    padding: 14px 0;
-    float: left;
-    box-sizing: border-box;
-    text-decoration: none;
-    color: $primary;
-    font-weight: 800;
-    svg {
-      margin-right: 10px;
-    }
-  }
-  .tab.inactive {
-    background: $grey3;
-    color: $white;
-    &:hover {
-      background: $grey3h;
-    }
   }
   
   .visit {
