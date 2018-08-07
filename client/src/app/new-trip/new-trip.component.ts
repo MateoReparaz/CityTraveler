@@ -19,6 +19,7 @@ export class NewTripComponent implements OnInit {
   start;
   end;
   error;
+  now;
   constructor(private tripService:TripsService, private router: Router) { }
 
   ngOnInit() {

@@ -8,6 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  username;
+  password;
+  email;
+  error;
 
   constructor(private sessionService:SessionService, private router:Router) { }
 

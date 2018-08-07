@@ -18,6 +18,7 @@ export class CreateTripComponent implements OnInit {
   trip: object;
   lastSelectedInfoWindow: any;
   save: any;
+  pattern;
   /*   labelOptions = {
 color: '#CC0000',
 fontFamily: '',

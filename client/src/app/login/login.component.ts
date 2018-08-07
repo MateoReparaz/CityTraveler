@@ -8,6 +8,11 @@ import { SessionService } from '../../services/session.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  username;
+  password;
+  error;
+
+
   constructor(private sessionService:SessionService, private router:Router) { }
 
   ngOnInit() {
