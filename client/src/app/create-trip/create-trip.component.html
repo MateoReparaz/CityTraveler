@@ -1,19 +1,20 @@
 <div class="main-container">
     <div class="create">
         <div class="list left-bar">
-            <h2>{{trip.city.name}}: Points of Interest</h2>
+            <h2 *ngIf="trip">{{trip.city.name}}'s: Points of Interest</h2>
             <div class="content">
                 <input id="things_name" placeholder="Find place to visit" type="text" [(ngModel)]="pattern">
             </div>
             <div *ngFor="let poi of pois | filter:'name':pattern; let i = index">
-                <a class="visit" (click)="Open(i)">{{poi.name}}, visit time: {{poi.duration/60}}min</a>
+                <a class="visit" (click)="saveOpen(poi.name)">{{poi.name}}, visit time: {{poi.duration/60}}min</a>
             </div>
         </div>
         <div>
             <div class="map">
                 <agm-map #gm [latitude]="lat" [longitude]="lng" [zoom]="zoom">
                     <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label" (markerClick)="markerClick(infoWindow)">
-                        <agm-info-window #infoWindow>
+                        <agm-info-window #infoWindow [isOpen]="isInfoWindowOpen(m.name)">
+
                             <h2>{{m.name}}</h2>
                             <div class="info">
                                 <img class="img" *ngIf="m.img" src="{{m.img}}" alt="">

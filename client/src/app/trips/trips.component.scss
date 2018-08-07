@@ -88,7 +88,9 @@ h1 {
 }
 .new-trip {
   text-align: center;
-  background-image: url("../../assets/images/newflag.jpg");
+  background-image: url("../../assets/images/1200px-Olympic_flag.svg.png");
+  background-position: center;
+  background-size: 90%;
 
   a {
     color: $primary;
@@ -97,11 +99,10 @@ h1 {
     height: 100%;
     background-color: rgba(54, 130, 138, 0.1);
     transition: all ease 0.3s;
-    .circle {
-      border-radius: 50%;
+    .squere {
       display: inline-block;
-      width: 140px;
-      height: 140px;
+      width: 65%;
+      height: 62%;
       border: 4px solid $primary;
       margin-top: 50px;
       margin-bottom: 10px;
@@ -115,10 +116,11 @@ h1 {
     }
     &:hover {
       background-color: rgba(54, 130, 138, 0.05);
-      .circle {
-        width: 160px;
-        height: 160px;
+      .squere {
+        width: 100%;
+        height: 100%;
         line-height: 160px;
+        margin-top: 0;
         font-size: 70px;
         border-color: $primaryh;
         background-color: rgba(54, 130, 138, 0.05);

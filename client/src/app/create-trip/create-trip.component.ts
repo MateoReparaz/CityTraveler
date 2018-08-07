@@ -17,6 +17,7 @@ export class CreateTripComponent implements OnInit {
   zoom: number = 14;
   trip: object;
   lastSelectedInfoWindow: any;
+  save: any;
   /*   labelOptions = {
 color: '#CC0000',
 fontFamily: '',
@@ -53,7 +54,7 @@ text: 'Some Text',
       this.markers.push({
         lat: element.location.lat,
         lng: element.location.lng,
-        /* label: (Math.round( element.rating * 10 ) / 10 ).toString(), */
+        /* label:,  */
         draggable: false,
         name: element.name,
         img: element.thumbnail_url,
@@ -70,10 +71,13 @@ text: 'Some Text',
       })
     );
   }
-  Open(i: number){
-    console.log(this.markers[1]["infoWindow"]);
-    this.markers[i]["infoWindow"].open();
+  saveOpen(i: any){
+    this.save = i;
   }
+
+  isInfoWindowOpen(id) {
+    return id == this.save;
+}
   
   markerClick(infoWindow: any) {
     console.log(infoWindow)
