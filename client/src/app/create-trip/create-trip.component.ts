@@ -83,7 +83,6 @@ text: 'Some Text',
 }
   
   markerClick(infoWindow: any) {
-    console.log(infoWindow)
     infoWindow.close()
     if (infoWindow == this.lastSelectedInfoWindow) {
       return;

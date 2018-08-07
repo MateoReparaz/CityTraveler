@@ -90,7 +90,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/user', genericCrud(require('./models/User')));
 app.use('/api/trips',require('./routes/trip'))
 app.use('/api/poi',require('./routes/poi')) 
-
+app.use((req,res) => res.sendFile(__dirname+'/public/index.html'))
 
 
 

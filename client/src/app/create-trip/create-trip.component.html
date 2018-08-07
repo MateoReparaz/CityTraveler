@@ -10,7 +10,7 @@
             </div>
         </div>
         <div>
-            <div class="map" *ngIf = "markers">
+            <div class="map" *ngIf="markers">
                 <agm-map #gm [latitude]="lat" [longitude]="lng" [zoom]="zoom">
                     <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label" (markerClick)="markerClick(infoWindow)">
                         <agm-info-window #infoWindow [isOpen]="isInfoWindowOpen(m.name)">

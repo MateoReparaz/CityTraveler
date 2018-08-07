@@ -1,13 +1,27 @@
 <div class="main-container">
   <div *ngIf="trip" class="cardContainer">
-    <div class="form-container card " *ngFor=" let day of trip.schedule">
+    <div class="day-container card " *ngFor=" let day of trip.schedule">
       <h2>{{day.day | date : "d MMM"}}</h2>
-      <div *ngFor="let poi of day.pois">
-        <p class="visit">{{poi.name}} - Visit time:{{poi.duration/60}}min</p>
+      <div *ngFor="let poi of day.pois; let i = index">
+        <p class="visit" (click)="saveOpen(poi.name);markerClick(infoWindow)">{{poi.name}} - Visit time:{{poi.duration/60}}min
+          <a (click)="deletePoi(i,trip._id,day.day)">
+            <i class="fa fa-trash-alt"></i>
+          </a>
+        </p>
       </div>
-      <div class="map">
+      <div class="map" *ngIf="day.pois[0]">
         <agm-map [latitude]="day.pois[0].location.lat" [longitude]="day.pois[0].location.lng" [zoom]="15">
-          <agm-marker *ngFor="let m of day.pois; let i = index" [latitude]="m.location.lat" [longitude]="m.location.lng" [label]="m.label">
+          <agm-marker *ngFor="let m of day.pois; let i = index" [latitude]="m.location.lat" [longitude]="m.location.lng" [label]="m.label" (markerClick)="markerClick(infoWindow)">
+            <agm-info-window #infoWindow [isOpen]="isInfoWindowOpen(m.name)">
+              <h3>{{m.name}}</h3>
+              <div class="info">
+                <img class="img" *ngIf="m.thumbnail_url" src="{{m.thumbnail_url}}" alt="">
+                <img class="img" *ngIf="!m.thumbnail_url" src="../../assets/images/thumnail.jpg" width="150px" height="150px" alt="">
+                <p *ngIf="m.perex">
+                  <b>Info:</b>
+                  <br>{{m.perex}}</p>
+              </div>
+            </agm-info-window>
           </agm-marker>
         </agm-map>
       </div>

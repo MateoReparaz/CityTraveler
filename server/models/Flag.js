@@ -105,7 +105,7 @@ module.exports = [
     },
     {
     flag: "https://restcountries.eu/data/bol.svg",
-    name: "Bolivia (Plurinational State of)"
+    name: "Bolivia"
     },
     {
     flag: "https://restcountries.eu/data/bes.svg",
@@ -145,7 +145,7 @@ module.exports = [
     },
     {
     flag: "https://restcountries.eu/data/brn.svg",
-    name: "Brunei Darussalam"
+    name: "Brunei"
     },
     {
     flag: "https://restcountries.eu/data/bgr.svg",
@@ -489,7 +489,7 @@ module.exports = [
     },
     {
     flag: "https://restcountries.eu/data/lao.svg",
-    name: "Lao People's Democratic Republic"
+    name: "Laos"
     },
     {
     flag: "https://restcountries.eu/data/lva.svg",
@@ -529,7 +529,7 @@ module.exports = [
     },
     {
     flag: "https://restcountries.eu/data/mkd.svg",
-    name: "Macedonia (the former Yugoslav Republic of)"
+    name: "Macedonia"
     },
     {
     flag: "https://restcountries.eu/data/mdg.svg",

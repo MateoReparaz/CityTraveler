@@ -5,12 +5,11 @@ const user = require("../models/User");
 const moment = require("moment");
 const router = express.Router();
 const Trip = require("../models/Trip");
-const flags = require("../models/Flag")
+const flags = require("../models/Flag");
 
 router.get("/", (req, res, next) => {
-  console.log(req.user._id)
-  Trip.find({userId:req.user._id})
-  .exec((err, trips) => {
+  console.log(req.user._id);
+  Trip.find({ userId: req.user._id }).exec((err, trips) => {
     if (err) {
       return res.status(500).json(err);
     }
@@ -31,9 +30,9 @@ const getDates = function(startDate, endDate) {
 router.post("/", (req, res, next) => {
   let dates = [];
   let countryName = req.body.country;
-  let img = flags.filter(e=>{
-    return e.name == countryName
-  })
+  let img = flags.filter(e => {
+    return e.name == countryName;
+  });
   let countryID = countries[countryName];
   let cityName = req.body.city;
   let cityID = cities[countryID][cityName];
@@ -48,7 +47,7 @@ router.post("/", (req, res, next) => {
       name: cityName,
       id: cityID
     },
-    img:img[0].flag
+    img: img[0].flag
   });
   newTrip
     .save()
@@ -79,17 +78,31 @@ router.post("/trip/update", (req, res, next) => {
   });
 });
 
-router.get('/delete/:id',(req,res,next) => {
-  const {id} = req.params;
+router.get("/delete/:id", (req, res, next) => {
+  const { id } = req.params;
   Trip.findByIdAndRemove(id)
-      .then( obj => {
-          if(obj){
-              res.status(200).json({status:`Removed from db`});
-          }else{
-              throw new Error("Not existing ID");
-          }
-      })
-      .catch(e => next(e))
-})
+    .then(obj => {
+      if (obj) {
+        res.status(200).json({ status: `Removed from db` });
+      } else {
+        throw new Error("Not existing ID");
+      }
+    })
+    .catch(e => next(e));
+});
+
+router.post("/poi/delete", (req, res, next) => {
+  const { tripId, index, tripDay } = req.body;
+  console.log({ tripId, index, tripDay })
+  Trip.findByIdAndUpdate(tripId).then(trip => {
+    let day = trip.schedule.find(element => element.day == tripDay)
+    trip.schedule[trip.schedule.indexOf(day)].pois.splice(index,1);
+    const updatedDay = trip.schedule;
+    trip
+      .update({schedule : updatedDay})
+      .then(() => res.json())
+      .catch(error => res.json(error));
+  });
+});
 
 module.exports = router;

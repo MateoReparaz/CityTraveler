@@ -16,7 +16,6 @@ export class DayComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params =>
       this.dayService.getTrip(params.id).subscribe(trip => {
-        console.log(params)
         this.trip = trip;
     })
 

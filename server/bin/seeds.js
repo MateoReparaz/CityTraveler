@@ -1,12 +1,12 @@
 require("dotenv").config();
 
 const mongoose = require("mongoose");
-const Country = require("../models/Country");
-const City = require("../models/City");
+const Country = require("../models/Countries");
+const City = require("../models/Cities");
 
 mongoose.Promise = Promise;
 mongoose
-  .connect( process.env.DBURL, { useMongoClient: true })
+  .connect( process.env.MLABURL, { useMongoClient: true })
   .then(() => {
     console.log("Connected to Mongo!");
 
@@ -47480,9 +47480,9 @@ mongoose
       }
     ];
 
-    Country.collection.drop();
-    City.collection.drop();
-
+    // Country.collection.drop();
+    // City.collection.drop();
+    console.log(Country)
     Country.create(countries)
       .then(data => {
         console.log(`${data.length} countries created.`);
