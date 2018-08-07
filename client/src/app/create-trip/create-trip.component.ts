@@ -76,6 +76,8 @@ text: 'Some Text',
   }
 
   isInfoWindowOpen(id) {
+    if(!id)
+      return false;
     return id == this.save;
 }
   
