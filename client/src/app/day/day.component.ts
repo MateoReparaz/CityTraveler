@@ -3,6 +3,7 @@ import { TripsService } from "./../../services/trips.service";
 import { ActivatedRoute } from "@angular/router";
 import { DayService } from "./../../services/day.service";
 import { Component, OnInit } from "@angular/core";
+import { google } from "@agm/core/services/google-maps-types";
 
 @Component({
   selector: "app-day",
@@ -16,18 +17,20 @@ export class DayComponent implements OnInit {
   lat: number;
   lng: number;
   trip: any;
+  totalDuration: number = 0
+
 
   public origin: {};
   public destination: {};
   public renderOptions = {
     draggable: true
   };
-  /* public waypoints: any; */
+  public optimizeWaypoints: boolean = true
   public travelMode: string = "WALKING";
+  /* public waypoints: any; */
   /* public change(event: any) {
     this.waypoints = event.request.waypoints;
   } */
-  public optimizeWaypoints: boolean = true
 
   constructor(
     public dayService: DayService,
@@ -39,6 +42,11 @@ export class DayComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.dayService.getDay(params.idDay, params.idTrip).subscribe(day => {
         this.day = day;
+        this.day.pois.forEach(element => {
+          this.totalDuration += element.duration
+          console.log(this.totalDuration)
+          return this.totalDuration
+        });
         /* this.waypoints = [
            {
             location: { lat: this.day.pois[1].location.lat, lng: this.day.pois[1].location.lng },
@@ -53,6 +61,7 @@ export class DayComponent implements OnInit {
       });
     });
   }
+
 
   getDirection() {
     let maxX = -1000;
@@ -82,7 +91,21 @@ export class DayComponent implements OnInit {
     }
     console.log(this.origin, this.destination)
   }
-
+/* 
+  /////////////////////////////////////////////
+  getDistance(){
+  let service = new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix(
+  {
+    origins: this.origin ,
+    destinations: this.destination,
+    travelMode: 'DRIVING',
+    avoidHighways: true,
+    avoidTolls: true,
+  })
+}
+//////////////////////////////////////////
+ */
   saveOpen(i: any) {
     this.save = i;
   }

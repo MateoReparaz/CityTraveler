@@ -11,7 +11,8 @@
       </div>
       <div class="map" *ngIf="day.pois[0]">
         <agm-map [latitude]="day.pois[0].location.lat" [longitude]="day.pois[0].location.lng" [zoom]="15">
-          <agm-marker *ngFor="let m of day.pois; let i = index" [latitude]="m.location.lat" [longitude]="m.location.lng" [label]="m.label" (markerClick)="markerClick(infoWindow)">
+          <agm-marker *ngFor="let m of day.pois; let i = index" [latitude]="m.location.lat" [longitude]="m.location.lng" [label]="m.label"
+            (markerClick)="markerClick(infoWindow)">
             <agm-info-window #infoWindow [isOpen]="isInfoWindowOpen(m.name)">
               <h3>{{m.name}}</h3>
               <div class="info">
@@ -25,7 +26,7 @@
           </agm-marker>
         </agm-map>
       </div>
-      <a [routerLink]="['/day',day._id,trip._id]">see day</a>
+        <button [routerLink]="['/day',day._id,trip._id]">see day</button>
     </div>
   </div>
 </div>

@@ -20,13 +20,10 @@ router.get("/", (req, res, next) => {
 //GET DAY
 router.get("/day/:idDay/:idTrip", (req, res, next) => {
   const { idDay,idTrip } = req.params;
-  console.log({ idDay,idTrip })
   Trip.findById(idTrip).then(trip => {
     const day = trip.schedule.find(e => {
-      console.log(e._id)
       return e._id == idDay
     })
-    console.log(day)
     res.json(day)
   });
 });
