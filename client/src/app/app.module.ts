@@ -19,6 +19,7 @@ import { AgmCoreModule } from '@agm/core';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { AgmDirectionModule } from 'agm-direction'
 
 @NgModule({
   declarations: [
@@ -41,8 +42,9 @@ import { FilterPipe } from './pipes/filter.pipe';
     FormsModule,
     HttpModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCJ-HnA4GOnAkxPy2N4d24-yvb-GgdRp7A'
-    })
+      apiKey: 'AIzaSyCJGJs9eKdaizK816sbzWmZUG_CvFaVBao'
+    }),
+    AgmDirectionModule
   ],
   providers: [SessionService],
   bootstrap: [AppComponent]

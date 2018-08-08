@@ -1,14 +1,18 @@
 <div class="main-container" *ngIf="day">
+    
     <div>
         <h2>{{day.day | date : "d MMM"}}</h2>
-        <div *ngFor="let p of day.pois">
+        <div *ngFor="let p of day.pois; let i = index">
             <p class="visit" (click)="saveOpen(p.name)">{{p.name}} - Visit time:{{p.duration/60}}min
-                <a (click)="deletePoi(i,trip._id,day.day)">
+                <a (click)="deletePoi(i,day.day)">
                     <i class="fa fa-trash-alt"></i>
                 </a>
             </p>
         </div>
         <agm-map [latitude]="day.pois[0].location.lat" [longitude]="day.pois[0].location.lng" [zoom]="13">
+                <agm-direction [origin]="origin" [destination]="destination" [waypoints]="waypoints" [renderOptions]="renderOptions" 
+                (onChange)="change($event)" [travelMode]="travelMode">
+                    </agm-direction>
             <agm-marker *ngFor="let m of day.pois; let i = index" [latitude]="m.location.lat" [longitude]="m.location.lng" [label]="m.label"
                 (markerClick)="markerClick(infoWindow)">
                 <agm-info-window #infoWindow [isOpen]="isInfoWindowOpen(m.name)">
