@@ -25,6 +25,7 @@ export class NewTripComponent implements OnInit {
   ngOnInit() {
     this.today = Date.now
   }
+  
   updateCities(){
     this.cityList = undefined;
     this.error = undefined;
@@ -36,7 +37,6 @@ export class NewTripComponent implements OnInit {
     }
   }
   newTrip(){
-
     this.tripService
       .newTrip(this.country,this.city, this.start, this.end)
       .subscribe(data => this.router.navigate(["trips/create",data._id ]), err => (this.error = err));

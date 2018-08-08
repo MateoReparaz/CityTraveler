@@ -14,7 +14,6 @@
                 <agm-map #gm [latitude]="lat" [longitude]="lng" [zoom]="zoom">
                     <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label" (markerClick)="markerClick(infoWindow)">
                         <agm-info-window #infoWindow [isOpen]="isInfoWindowOpen(m.name)">
-
                             <h2>{{m.name}}</h2>
                             <div class="info">
                                 <img class="img" *ngIf="m.img" src="{{m.img}}" alt="">

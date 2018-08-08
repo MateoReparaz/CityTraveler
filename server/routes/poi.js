@@ -12,8 +12,8 @@ const apiOptions = {
   headers: { "x-api-key": process.env.SYGIC_API_KEY }
 };
 
+//GET TRIP BY ID
 router.get("/trip/:id",(req,res,next) =>{
-  console.log("entra")
   Trip.findById(req.params.id)
   .then(trip => {
     res.json(trip)
@@ -21,6 +21,7 @@ router.get("/trip/:id",(req,res,next) =>{
   .catch(error => res.json(error));
 })
 
+//API CALL TO GET POIS AND ADD THEM TO CITY IN DB
 router.get("/:id", (req, res, next) => {
   Trip.findById(req.params.id)
   .then(trip => {

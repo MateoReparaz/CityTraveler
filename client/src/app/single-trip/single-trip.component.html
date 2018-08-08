@@ -3,7 +3,7 @@
     <div class="day-container card " *ngFor=" let day of trip.schedule">
       <h2>{{day.day | date : "d MMM"}}</h2>
       <div *ngFor="let poi of day.pois; let i = index">
-        <p class="visit" (click)="saveOpen(poi.name);markerClick(infoWindow)">{{poi.name}} - Visit time:{{poi.duration/60}}min
+        <p class="visit" (click)="saveOpen(poi.name)">{{poi.name}} - Visit time:{{poi.duration/60}}min
           <a (click)="deletePoi(i,trip._id,day.day)">
             <i class="fa fa-trash-alt"></i>
           </a>
@@ -25,7 +25,7 @@
           </agm-marker>
         </agm-map>
       </div>
+      <a [routerLink]="['/day',day._id,trip._id]">see day</a>
     </div>
   </div>
-  <a [routerLink]="['/day']">see day</a>
 </div>

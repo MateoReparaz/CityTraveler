@@ -24,7 +24,6 @@ export class TripsComponent implements OnInit {
   }
 
   deleteTrip(id: any) {
-    console.log("trip deleted", id);
     this.tripsService.deleteTrip(id).subscribe(() => {});
     this.tripsService.getAll().subscribe(trips => (this.trips = trips));
   }

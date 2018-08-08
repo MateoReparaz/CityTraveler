@@ -23,10 +23,15 @@ errorHandler(e) {
   console.log(e);
   return e;
 }
-
 getTrip(id: string) {
   return this.http
   .get(`${this.url}/api/poi/trip/${id}`, this.options)
+  .pipe(map(res => res.json()));
+}
+
+getDay(idDay: string, idTrip: string) {
+  return this.http
+  .get(`${this.url}/api/trips/day/${idDay}/${idTrip}`, this.options)
   .pipe(map(res => res.json()));
 }
 

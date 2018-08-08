@@ -94,6 +94,6 @@ text: 'Some Text',
     }
     this.lastSelectedInfoWindow = infoWindow;
   }
-
+z
 
 }

@@ -7,8 +7,8 @@ const router = express.Router();
 const Trip = require("../models/Trip");
 const flags = require("../models/Flag");
 
+//GET ALL TRIPS
 router.get("/", (req, res, next) => {
-  console.log(req.user._id);
   Trip.find({ userId: req.user._id }).exec((err, trips) => {
     if (err) {
       return res.status(500).json(err);
@@ -17,6 +17,21 @@ router.get("/", (req, res, next) => {
   });
 });
 
+//GET DAY
+router.get("/day/:idDay/:idTrip", (req, res, next) => {
+  const { idDay,idTrip } = req.params;
+  console.log({ idDay,idTrip })
+  Trip.findById(idTrip).then(trip => {
+    const day = trip.schedule.find(e => {
+      console.log(e._id)
+      return e._id == idDay
+    })
+    console.log(day)
+    res.json(day)
+  });
+});
+
+//GET DATES
 const getDates = function(startDate, endDate) {
   let dates = [];
   let currDate = moment(startDate).startOf("day");
@@ -27,6 +42,7 @@ const getDates = function(startDate, endDate) {
   return dates;
 };
 
+//CREATE TRIP
 router.post("/", (req, res, next) => {
   let dates = [];
   let countryName = req.body.country;
@@ -58,6 +74,7 @@ router.post("/", (req, res, next) => {
     });
 });
 
+//UPDATE TRIP
 router.post("/trip/update", (req, res, next) => {
   const { tripId, poi, tripDay } = req.body;
   Trip.findById(tripId).then(trip => {
@@ -78,6 +95,7 @@ router.post("/trip/update", (req, res, next) => {
   });
 });
 
+//DELETE TRIP
 router.get("/delete/:id", (req, res, next) => {
   const { id } = req.params;
   Trip.findByIdAndRemove(id)
@@ -91,15 +109,15 @@ router.get("/delete/:id", (req, res, next) => {
     .catch(e => next(e));
 });
 
+//DELETE POI FROM DAY
 router.post("/poi/delete", (req, res, next) => {
   const { tripId, index, tripDay } = req.body;
-  console.log({ tripId, index, tripDay })
   Trip.findByIdAndUpdate(tripId).then(trip => {
-    let day = trip.schedule.find(element => element.day == tripDay)
-    trip.schedule[trip.schedule.indexOf(day)].pois.splice(index,1);
+    let day = trip.schedule.find(element => element.day == tripDay);
+    trip.schedule[trip.schedule.indexOf(day)].pois.splice(index, 1);
     const updatedDay = trip.schedule;
     trip
-      .update({schedule : updatedDay})
+      .update({ schedule: updatedDay })
       .then(() => res.json())
       .catch(error => res.json(error));
   });
