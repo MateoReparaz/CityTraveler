@@ -12,14 +12,7 @@ const apiOptions = {
   headers: { "x-api-key": process.env.SYGIC_API_KEY }
 };
 
-//GET TRIP BY ID
-router.get("/trip/:id",(req,res,next) =>{
-  Trip.findById(req.params.id)
-  .then(trip => {
-    res.json(trip)
-  })
-  .catch(error => res.json(error));
-})
+
 
 //API CALL TO GET POIS AND ADD THEM TO CITY IN DB
 router.get("/:id", (req, res, next) => {
@@ -46,6 +39,20 @@ router.get("/:id", (req, res, next) => {
       .catch(error => res.json(error));
   })
   .catch(error => res.json(error));
+});
+
+//DELETE POI FROM DAY
+router.post("/delete", (req, res, next) => {
+  const { tripId, index, tripDay } = req.body;
+  Trip.findByIdAndUpdate(tripId).then(trip => {
+    let day = trip.schedule.find(element => element.day == tripDay);
+    trip.schedule[trip.schedule.indexOf(day)].pois.splice(index, 1);
+    const updatedDay = trip.schedule;
+    trip
+      .update({ schedule: updatedDay })
+      .then(() => res.json())
+      .catch(error => res.json(error));
+  });
 });
 
 

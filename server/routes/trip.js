@@ -17,16 +17,17 @@ router.get("/", (req, res, next) => {
   });
 });
 
-//GET DAY
-router.get("/day/:idDay/:idTrip", (req, res, next) => {
-  const { idDay,idTrip } = req.params;
-  Trip.findById(idTrip).then(trip => {
-    const day = trip.schedule.find(e => {
-      return e._id == idDay
-    })
-    res.json(day)
-  });
-});
+//GET TRIP BY ID
+router.get("/trip/:id",(req,res,next) =>{
+  console.log("Entra")
+  Trip.findById(req.params.id)
+  .then(trip => {
+    res.json(trip)
+  })
+  .catch(error => res.json(error));
+})
+
+
 
 //GET DATES
 const getDates = function(startDate, endDate) {
@@ -106,18 +107,5 @@ router.get("/delete/:id", (req, res, next) => {
     .catch(e => next(e));
 });
 
-//DELETE POI FROM DAY
-router.post("/poi/delete", (req, res, next) => {
-  const { tripId, index, tripDay } = req.body;
-  Trip.findByIdAndUpdate(tripId).then(trip => {
-    let day = trip.schedule.find(element => element.day == tripDay);
-    trip.schedule[trip.schedule.indexOf(day)].pois.splice(index, 1);
-    const updatedDay = trip.schedule;
-    trip
-      .update({ schedule: updatedDay })
-      .then(() => res.json())
-      .catch(error => res.json(error));
-  });
-});
 
 module.exports = router;

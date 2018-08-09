@@ -28,9 +28,21 @@ export class PoiService {
   }
 
   getTrip(id: any) {
-    return this.http.get(`${this.url}/api/poi/trip/${id}`, this.options).pipe(
+    return this.http.get(`${this.url}/api/trips/trip/${id}`, this.options).pipe(
       map(res => res.json()),
       catchError(e => of(this.errorHandler(e)))
     );
+  }
+  deletePoi(index,  tripId, tripDay) {
+    return this.http
+      .post(
+        `${this.url}/api/poi/delete`,
+        { index, tripId, tripDay},
+        this.options
+      )
+      .pipe(
+        map(res => res.json()),
+        catchError(e => of(this.errorHandler(e)))
+      );
   }
 }

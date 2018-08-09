@@ -30,7 +30,7 @@ export class SingleTripComponent implements OnInit {
     this.update();
   }
   deletePoi(index, tripId, day) {
-    this.tripsService.deletePoi(index, tripId, day).subscribe(() => {
+    this.poiService.deletePoi(index, tripId, day).subscribe(() => {
       this.update();
     });
   }

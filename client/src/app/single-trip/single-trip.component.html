@@ -1,7 +1,7 @@
 <div class="main-container">
   <div *ngIf="trip" class="cardContainer">
     <div class="day-container card " *ngFor=" let day of trip.schedule">
-      <h2>{{day.day | date : "d MMM"}}</h2>
+      <h2>{{day.day | date : "d MMMM"}}</h2>
       <div *ngFor="let poi of day.pois; let i = index">
         <p class="visit" (click)="saveOpen(poi.name)">{{poi.name}} - Visit time:{{poi.duration/60}}min
           <a (click)="deletePoi(i,trip._id,day.day)">

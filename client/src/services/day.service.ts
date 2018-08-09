@@ -21,7 +21,7 @@ export class DayService {
     return e;
   }
   getTrip(id: string) {
-    return this.http.get(`${this.url}/api/poi/trip/${id}`, this.options).pipe(
+    return this.http.get(`${this.url}/api/trips/trip/${id}`, this.options).pipe(
       map(res => res.json()),
       catchError(e => of(this.errorHandler(e)))
     );
@@ -29,7 +29,7 @@ export class DayService {
 
   getDay(idDay: string, idTrip: string) {
     return this.http
-      .get(`${this.url}/api/trips/day/${idDay}/${idTrip}`, this.options)
+      .get(`${this.url}/api/day/${idDay}/${idTrip}`, this.options)
       .pipe(
         map(res => res.json()),
         catchError(e => of(this.errorHandler(e)))

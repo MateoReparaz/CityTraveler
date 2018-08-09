@@ -1,7 +1,7 @@
 <div class="main-container">
     <div class="create">
-        <div class="list left-bar">
-            <h2 *ngIf="trip">{{trip.city.name}}'s: Points of Interest</h2>
+        <div class="list left-bar" *ngIf="trip">
+            <h2 *ngIf="trip.city">{{trip.city.name}}'s: Points of Interest</h2>
             <div class="content">
                 <input id="things_name" placeholder="Find place to visit" type="text" [(ngModel)]="pattern">
             </div>

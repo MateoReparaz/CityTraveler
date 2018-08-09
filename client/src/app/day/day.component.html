@@ -1,20 +1,22 @@
-<div class="main-container" *ngIf="day">
+<div class="main-container" *ngIf="day && trip">
     <div class="create">
         <div class="list left-bar">
-            <h2>{{day.day | date : "d MMM"}}</h2>
+            <h2> {{trip.city.name}} - {{day.day | date : "d MMMM"}}</h2>
+            <div *ngIf="data" class="routeData">
+                <h3>Estimated Route time</h3>
+                <p><b>Places:</b> {{totalDuration/3600}} Hours ({{totalDuration/60}} Minutes)</p>
+                <p><b>Walking:</b> {{data.durationValue/60 | number:'1.0-1'}} Minutes</p>
+                <hr>
+                <p><b>Total:</b> {{(totalDuration + data.durationValue) / 3600  | number:'1.0-1'}} Hours ({{(totalDuration + data.durationValue)/60 | number:'1.0-1'}} Minutes)</p> 
+                <h3>Total distance Walked</h3>
+                <p>{{data.distance}}</p>
+            </div>
             <div *ngFor="let p of day.pois; let i = index">
                 <p class="visit" (click)="saveOpen(p.name)">{{p.name}} - Visit time:{{p.duration/60}}min
                     <a (click)="deletePoi(i,day.day)">
                         <i class="fa fa-trash-alt"></i>
                     </a>
                 </p>
-            </div>
-            <div class="routeData">
-                <h3>Estimated Route time</h3>
-                <p> <b>Places:</b> {{totalDuration/3600}} Hours ({{totalDuration/60}} Minutes)</p>
-                <p> <b>Walking:</b> {{data.duration}}</p>
-                <p><b>Total:</b> {{totalDuration/3600}} Hours ({{totalDuration/60}} Minutes)</p> 
-                <h3>Total distance Walked</h3>
             </div>
         </div>
         <div class="map">

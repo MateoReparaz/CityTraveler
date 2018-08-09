@@ -55,8 +55,10 @@ export class TripsService {
 
   getById(id: string) {
     return this.http
-      .get(`${this.url}/api/trips/${id}`, this.options)
-      .pipe(map(res => res.json()));
+      .get(`${this.url}/api/trips/trip/${id}`, this.options)
+      .pipe(map(res => res.json()),
+      catchError(e => of(this.errorHandler(e)))
+    );
   }
 
   deleteTrip(id: string) {
@@ -65,16 +67,5 @@ export class TripsService {
       .pipe(map(res => res.json()));
   }
 
-  deletePoi(index,  tripId, tripDay) {
-    return this.http
-      .post(
-        `${this.url}/api/trips/poi/delete`,
-        { index, tripId, tripDay},
-        this.options
-      )
-      .pipe(
-        map(res => res.json()),
-        catchError(e => of(this.errorHandler(e)))
-      );
-  }
+  
 }

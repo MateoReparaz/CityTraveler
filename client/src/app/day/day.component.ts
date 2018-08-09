@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { DayService } from "./../../services/day.service";
 import { Component, OnInit } from "@angular/core";
 import { google } from "@agm/core/services/google-maps-types";
+import { PoiService } from "../../services/poi.service";
 
 @Component({
   selector: "app-day",
@@ -36,7 +37,8 @@ export class DayComponent implements OnInit {
   constructor(
     public dayService: DayService,
     private route: ActivatedRoute,
-    public tripsService: TripsService
+    public tripsService: TripsService,
+    public poiService: PoiService
   ) {}
 
   ngOnInit() {
@@ -45,23 +47,20 @@ export class DayComponent implements OnInit {
         this.day = day;
         this.day.pois.forEach(element => {
           this.totalDuration += element.duration
-          console.log(this.totalDuration)
           return this.totalDuration
         });
-        /* this.waypoints = [
-           {
-            location: { lat: this.day.pois[1].location.lat, lng: this.day.pois[1].location.lng },
-            stopover:false,
-        },
-        {
-          location: { lat: this.day.pois[2].location.lat, lng: this.day.pois[2].location.lng },
-          stopover: false,
-      } 
-        ]; */
+        this.tripsService.getById(params.idTrip).subscribe(trip => {
+          console.log(trip)
+          this.trip = trip;
+        })
+        
         this.getDirection();
         this.getData(this.origin,this.destination)
+
       });
+      
     });
+
   }
 
 
@@ -91,7 +90,6 @@ export class DayComponent implements OnInit {
       this.origin = this.day.pois.find(e => e.location.lat == minY).location;
       this.destination = this.day.pois.find(e => e.location.lat == maxY).location;
     }
-    console.log(this.origin, this.destination)
   }
 
   saveOpen(i: any) {
@@ -118,7 +116,7 @@ export class DayComponent implements OnInit {
 
   deletePoi(index, day) {
     this.route.params.subscribe(params => {
-      this.tripsService.deletePoi(index, params.idTrip, day).subscribe(() => {
+      this.poiService.deletePoi(index, params.idTrip, day).subscribe(() => {
         this.update();
       });
     });
@@ -137,3 +135,16 @@ export class DayComponent implements OnInit {
     })
   }
 }
+
+
+
+/* this.waypoints = [
+           {
+            location: { lat: this.day.pois[1].location.lat, lng: this.day.pois[1].location.lng },
+            stopover:false,
+        },
+        {
+          location: { lat: this.day.pois[2].location.lat, lng: this.day.pois[2].location.lng },
+          stopover: false,
+      } 
+        ]; */
