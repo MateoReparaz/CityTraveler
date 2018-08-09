@@ -1,7 +1,8 @@
-import { map } from "rxjs/operators";
+import { map, catchError } from "rxjs/operators";
 import { Http } from "@angular/http";
 import { environment } from "./../environments/environment";
 import { Injectable } from "@angular/core";
+import { of } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -20,14 +21,16 @@ export class PoiService {
   }
 
   getAll(id: any) {
-    return this.http
-      .get(`${this.url}/api/poi/${id}`, this.options)
-      .pipe(map(res => res.json()));
+    return this.http.get(`${this.url}/api/poi/${id}`, this.options).pipe(
+      map(res => res.json()),
+      catchError(e => of(this.errorHandler(e)))
+    );
   }
 
   getTrip(id: any) {
-    return this.http
-      .get(`${this.url}/api/poi/trip/${id}`, this.options)
-      .pipe(map(res => res.json()));
+    return this.http.get(`${this.url}/api/poi/trip/${id}`, this.options).pipe(
+      map(res => res.json()),
+      catchError(e => of(this.errorHandler(e)))
+    );
   }
 }

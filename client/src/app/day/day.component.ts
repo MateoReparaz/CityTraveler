@@ -18,6 +18,7 @@ export class DayComponent implements OnInit {
   lng: number;
   trip: any;
   totalDuration: number = 0
+  data;
 
 
   public origin: {};
@@ -58,6 +59,7 @@ export class DayComponent implements OnInit {
       } 
         ]; */
         this.getDirection();
+        this.getData(this.origin,this.destination)
       });
     });
   }
@@ -91,21 +93,7 @@ export class DayComponent implements OnInit {
     }
     console.log(this.origin, this.destination)
   }
-/* 
-  /////////////////////////////////////////////
-  getDistance(){
-  let service = new google.maps.DistanceMatrixService();
-  service.getDistanceMatrix(
-  {
-    origins: this.origin ,
-    destinations: this.destination,
-    travelMode: 'DRIVING',
-    avoidHighways: true,
-    avoidTolls: true,
-  })
-}
-//////////////////////////////////////////
- */
+
   saveOpen(i: any) {
     this.save = i;
   }
@@ -141,5 +129,11 @@ export class DayComponent implements OnInit {
         this.day = day;
       })
     );
+  }
+
+  getData(origin,destination){
+    this.dayService.getData(origin,destination).subscribe(data=> {
+      this.data = data
+    })
   }
 }

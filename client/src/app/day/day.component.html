@@ -9,11 +9,13 @@
                     </a>
                 </p>
             </div>
-            <h3>Estimated Route time</h3>
-            <p> <b>Places:</b> {{totalDuration/3600}} Hours ({{totalDuration/60}} Minutes)</p>
-            <p> <b>Walking:</b></p>
-            <p><b>Total:</b> {{totalDuration/3600}} Hours ({{totalDuration/60}} Minutes)</p> 
-            <h3>Total distance Walked</h3>
+            <div class="routeData">
+                <h3>Estimated Route time</h3>
+                <p> <b>Places:</b> {{totalDuration/3600}} Hours ({{totalDuration/60}} Minutes)</p>
+                <p> <b>Walking:</b> {{data.duration}}</p>
+                <p><b>Total:</b> {{totalDuration/3600}} Hours ({{totalDuration/60}} Minutes)</p> 
+                <h3>Total distance Walked</h3>
+            </div>
         </div>
         <div class="map">
             <agm-map [latitude]="day.pois[0].location.lat" [longitude]="day.pois[0].location.lng" [zoom]="13">
