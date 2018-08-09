@@ -1,3 +1,4 @@
+import { DayService } from './../../services/day.service';
 import { TripsService } from "./../../services/trips.service";
 import { marker } from "../../interfaces/markers";
 import { Component, OnInit } from "@angular/core";
@@ -30,7 +31,8 @@ text: 'Some Text',
   constructor(
     public poiService: PoiService,
     public tripsService: TripsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dayService: DayService
   ) {}
 
   ngOnInit() {
@@ -39,7 +41,6 @@ text: 'Some Text',
         this.pois = pois;
         this.lat = this.pois[0].location.lat;
         this.lng = this.pois[0].location.lng;
-
         this.createMarker();
       })
     );
@@ -47,6 +48,15 @@ text: 'Some Text',
     this.route.params.subscribe(params =>
       this.poiService.getTrip(params.id).subscribe(trip => {
         this.trip = trip;
+      })
+    );
+  }
+
+  update(infoWindow) {
+    this.route.params.subscribe(params =>
+      this.dayService.getTrip(params.id).subscribe(trip => {
+        this.trip = trip;
+        this.markerClick(infoWindow)
       })
     );
   }
@@ -66,9 +76,10 @@ text: 'Some Text',
     });
   }
 
-  updateTrip(id, date) {
+  updateTrip(id, date, infoWindow) {
     this.route.params.subscribe(params =>
       this.tripsService.updateTrip(id, date, params.id).subscribe(() => {
+        this.update(infoWindow)
       })
     );
   }
@@ -94,6 +105,5 @@ text: 'Some Text',
     }
     this.lastSelectedInfoWindow = infoWindow;
   }
-z
 
 }

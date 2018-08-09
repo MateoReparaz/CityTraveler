@@ -1,12 +1,23 @@
 <div class="main-container">
     <div class="create">
         <div class="list left-bar" *ngIf="trip">
-            <h2 *ngIf="trip.city">{{trip.city.name}}'s: Points of Interest</h2>
+            <h2 *ngIf="trip.city">{{trip.city.name}}'s <br> Points of Interest</h2>
             <div class="content">
                 <input id="things_name" placeholder="Find place to visit" type="text" [(ngModel)]="pattern">
             </div>
+            <div *ngFor="let day of trip.schedule">
+                <div>
+                    <h3>
+                        {{day.day | date : "d MMM"}}
+                    </h3>
+                    <div *ngFor="let poi of day.pois">
+                        <p class=" visit visitS">{{poi.name}}</p>
+                    </div>
+                </div>
+            </div>
             <div *ngFor="let poi of pois | filter:'name':pattern; let i = index">
-                <a class="visit" (click)="saveOpen(poi.name)">{{poi.name}}, visit time: {{poi.duration/60}}min</a>
+                <a class="visit" (click)="saveOpen(poi.name)">{{poi.name}}, visit time: {{poi.duration/60}}min
+                </a>
             </div>
         </div>
         <div>
@@ -33,7 +44,7 @@
                             </div>
                             <div *ngIf="trip" class="buttons">
                                 <div *ngFor="let date of trip.dates">
-                                    <button (click)="updateTrip(m.poi, date); markerClick(infoWindow)" class="smallButton">Add to{{date | date : "d MMM"}}</button>
+                                    <button (click)="updateTrip(m.poi, date, infoWindow)" class="smallButton">Add to{{date | date : "d MMM"}}</button>
                                 </div>
                             </div>
                         </agm-info-window>
