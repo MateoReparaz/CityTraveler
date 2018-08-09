@@ -3,6 +3,6 @@
     <a [routerLink]="['/login']">Login</a> | <a [routerLink]="['/signup']">Signup</a>
   </div>
   <div class="menu" *ngIf="sessionService.user">
-      <span>Hello {{sessionService.user.username}}!</span> | <a [routerLink]="['trips']">Your trips</a> | <a (click)="logout()">Logout</a>
+      <i class="fas fa-globe-americas" [routerLink]="['/']"></i><span>Hello {{sessionService.user.username}}!</span> | <a [routerLink]="['trips']">Your trips</a> | <a (click)="logout()">Logout</a>
   </div>
 </div>
