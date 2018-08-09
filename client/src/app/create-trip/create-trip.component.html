@@ -1,7 +1,8 @@
 <div class="main-container">
     <div class="create">
         <div class="list left-bar" *ngIf="trip">
-            <h2 *ngIf="trip.city">{{trip.city.name}}'s <br> Points of Interest</h2>
+            <h2 *ngIf="trip.city">{{trip.city.name}}'s
+                <br> Points of Interest</h2>
             <div class="content">
                 <input id="things_name" placeholder="Find place to visit" type="text" [(ngModel)]="pattern">
             </div>
@@ -10,8 +11,12 @@
                     <h3>
                         {{day.day | date : "d MMM"}}
                     </h3>
-                    <div *ngFor="let poi of day.pois">
-                        <p class=" visit visitS">{{poi.name}}</p>
+                    <div *ngFor="let poi of day.pois; let i = index">
+                        <p class=" visit visitS">{{poi.name}}
+                            <a (click)="deletePoi(i,trip._id,day.day,infowindow)">
+                                <i class="fa fa-trash-alt"></i>
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>

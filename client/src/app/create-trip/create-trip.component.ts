@@ -105,5 +105,10 @@ text: 'Some Text',
     }
     this.lastSelectedInfoWindow = infoWindow;
   }
+  deletePoi(index, tripId, day,infowindow) {
+    this.poiService.deletePoi(index, tripId, day).subscribe(() => {
+      this.update(infowindow);
+    });
+  }
 
 }
