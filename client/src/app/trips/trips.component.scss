@@ -1,7 +1,7 @@
 @import "../../_variables.scss";
 
 h1 {
-  margin: 20px 10px;
+  margin: 5px 10px;
   font-family: $serif-font;
   text-align: center;
 }
@@ -79,11 +79,11 @@ h1 {
     right: 15px;
     width: 90px;
   }
-  .button2{
+  .button2 {
     position: absolute;
-    bottom:45px;
+    bottom: 45px;
     right: 15px;
-    width: 90px
+    width: 90px;
   }
 }
 .new-trip {

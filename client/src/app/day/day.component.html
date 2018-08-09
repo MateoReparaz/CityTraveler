@@ -1,11 +1,11 @@
 <div class="main-container" *ngIf="day && trip">
     <div class="create">
         <div class="list left-bar">
-            <h2> {{trip.city.name}} - {{day.day | date : "d MMMM"}}</h2>
+            <h2> {{trip.city.name}} <br> {{day.day | date : "d MMMM"}}</h2>
             <div *ngIf="data" class="routeData">
                 <h3>Estimated Route time</h3>
                 <p><b>Places:</b> {{totalDuration/3600}} Hours ({{totalDuration/60}} Minutes)</p>
-                <p><b>Walking:</b> {{data.durationValue/60 | number:'1.0-1'}} Minutes</p>
+                <p><b>Walking:</b>{{data.duration}} ({{data.durationValue/60 | number:'1.0-1'}} Minutes)</p>
                 <hr>
                 <p><b>Total:</b> {{(totalDuration + data.durationValue) / 3600  | number:'1.0-1'}} Hours ({{(totalDuration + data.durationValue)/60 | number:'1.0-1'}} Minutes)</p> 
                 <h3>Total distance Walked</h3>

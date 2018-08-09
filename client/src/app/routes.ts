@@ -19,5 +19,4 @@ export const routes: Routes = [
   { path: "trips/:id", component: SingleTripComponent},
   { path:'trips/delete/:id', component:TripsComponent},
   { path: "day/:idDay/:idTrip", component: DayComponent}
-
 ];
